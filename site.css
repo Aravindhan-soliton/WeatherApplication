@@ -1,10 +1,8 @@
 .am {
 	background-image: url("./HTML & CSS/General Images & Icons/amState.svg");
 	background-repeat: no-repeat;
-	background-size: 85px;
-	height: 75px;
-	margin-bottom: 8px;
-	margin-left: 4px;
+	background-size: 80px;
+	height: 77px;
 	width: 90px;
 }
 .arrow {
@@ -194,11 +192,11 @@
 	width: 50px;
 }
 .date {
-	font-size: 28px;
+	font-size: 22px;
 	font-weight: 400;
 }
 .date-height {
-	height: 45%;
+	height: 38%;
 	padding-left: 20px;
 	width: 100%;
 }
@@ -208,7 +206,7 @@
 	font-weight: 400;
 	letter-spacing: 2px;
 }
-.Display-top {
+.display-top {
 	align-self: center;
 	font-size: 20px;
 	margin-bottom: 5px;
@@ -250,7 +248,6 @@
 .flex1 {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
 	width: 1px;
 }
 .float-in {
@@ -297,22 +294,21 @@
 	padding-bottom: 8px;
 }
 .half-height {
-	height: 45%;
+	height: 49%;
 	width: 100%;
 }
 .head {
 	align-items: center;
 	color: #F1F1F1;
 	display: flex;
-	height: 400px;
+	height: 350px;
 	min-height: 200px;
 	width: 100%;
 }
 .hour-values {
-	align-items: center;
 	justify-content: space-evenly;
-	padding-top: 30px;
 	width: 45%;
+    height: 114%;
 }
 .humidity {
 	background-image: url("./HTML & CSS/Weather Icons/humidityIcon.svg");
@@ -336,7 +332,7 @@
 .line-temp-full {
 	align-items: flex-end;
 	display: flex;
-	height: 45%;
+	height: 49%;
 	width: 100%;
 }
 .mid {
@@ -347,7 +343,7 @@
 	display: flex;
 	flex-direction: column;
 	height: max-content;
-	margin-top: -40px;
+	margin-top: -60px;
 }
 .mid-head {
 	align-items: center;
@@ -440,7 +436,7 @@
 }
 .title-font {
 	align-self: center;
-	font-size: 25px;
+	font-size: 21px;
 }
 .uparrow {
 	background-image: url("./HTML & CSS/General Images & Icons/arrowUp.svg");
@@ -503,7 +499,7 @@ p {
 @media only screen and (max-width: 1125px) {
     .am {
         background-size: 65px;
-        height: 55px;
+        height: 63px;
         width: 70px;
     }
     .city-logo {
@@ -528,6 +524,9 @@ p {
     .digi-time {
         font-size: 28px;
     }
+    .down-height {
+        height: 44%;
+    }
     .dropdown {
         font-size: 36px;
         height: 70px;
@@ -538,6 +537,9 @@ p {
     }
     .foot-head-bar-right {
         font-size: 20px;
+    }
+    .half-height {
+        height: 52%;
     }
     .head {
         height: 350px;
@@ -562,13 +564,8 @@ p {
         width: 40px;
     }
     .time {
-        width: 30%;
-    }
-    .time {
-        width: 30%;
-    }
-    .time {
-        width: 20%;
+        gap: 19px;
+        height: 94%;
     }
     .title-font {
         font-size: 20px;
@@ -595,6 +592,9 @@ p {
         margin-bottom: 0;
         width: 60px;
     }
+        .border {
+        height: 60%;
+    }
     .city-logo {
         width: 112px;
     }
@@ -610,7 +610,7 @@ p {
     }
     .dropdown {
         font-size: 32px;
-        height: 55px;
+        height: 60px;
         padding-left: 16px;
         width: 90%;
     }
@@ -657,7 +657,7 @@ p {
     }
     .weather {
         background-size: 50%;
-        height: 52px;
+        height: 43px;
     }
     div {
         font-size: 16px;
@@ -693,7 +693,7 @@ p {
     .digi-time {
         font-size: 22px;
     }
-    .Display-top {
+    .display-top {
         font-size: 16px;
         height: 16px;
         width: 90px;
@@ -733,8 +733,8 @@ p {
         font-size: 28px;
     }
     .weather {
-        background-size: 50%;
-        height: 49px;
+        background-size: 80%;
+        height: 36px;
     }
     div {
         font-size: 14px;
@@ -772,7 +772,7 @@ p {
     .digi-time {
         font-size: 22px;
     }
-    .Display-top {
+    .display-top {
         font-size: 16px;
         height: 16px;
         width: 80px;
@@ -819,7 +819,7 @@ p {
     }
     .weather {
         background-size: 50%;
-        height: 46px;
+        height: 30px;
     }
     div {
         font-size: 12px;
@@ -844,7 +844,7 @@ p {
         width: 30px;
     }
     .city-logo {
-        width: 55px;
+        width: 70px;
     }
     .cool-img {
         background-size: 14px;
@@ -853,10 +853,14 @@ p {
     .date {
         font-size: 12px;
     }
+    .date-height{
+        height: 29%;
+        width: 100%;
+    }
     .digi-time {
         font-size: 14px;
     }
-    .Display-top {
+    .display-top {
         font-size: 15px;
         height: 16px;
         width: 72px;
@@ -869,8 +873,17 @@ p {
     .gap {
         gap: 0px;
     }
+    .half-height {
+        height: 50%;
+    }
     .head {
         height: 200px;
+    }
+    .line-temp-full {
+        height: 48%;
+    }
+    .mid {
+        margin-top: -50px;
     }
     .mid-head {
         font-size: 18px;
@@ -900,7 +913,7 @@ p {
     }
     .weather {
         background-size: 50%;
-        height: 42px;
+        height: 26px;
     }
     div {
         font-size: 10px;
