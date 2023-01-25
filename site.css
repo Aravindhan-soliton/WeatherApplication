@@ -24,6 +24,7 @@
 	justify-content: center;
 	width: 7.5%;
     cursor: pointer;
+    
 }
 .bg {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./HTML & CSS/General Images & Icons/background.svg");

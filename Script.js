@@ -11,6 +11,7 @@ document.getElementById("filter2").addEventListener("click", () => borderChange(
 document.getElementById("left-button").addEventListener("click", () => midSectionScroll(-285));
 document.getElementById("right-button").addEventListener("click", () => midSectionScroll(285));
 document.getElementById("number-box").addEventListener("change", () => cardUpdate());
+window.addEventListener("resize", updateScrollArrow);
 (function (){ 
     dataList = cityData;
     displayList = cityData;
@@ -194,6 +195,7 @@ function cardUpdate(){
             break;
         }
     }
+    updateScrollArrow();
 }
 function midSectionScroll(val){
     document.getElementById('midContainer').scrollLeft += val;
@@ -252,4 +254,21 @@ function updateCardDate(city){
             "-"+
             new Date(dateTime
         ).getFullYear();
+}
+function updateScrollArrow(){
+    let divWidth = document.getElementById("card-div").clientWidth;
+    let displayCount = displayList.length;
+    let numberBoxCount = document.getElementById("number-box").value;
+    let count = displayCount<numberBoxCount? displayCount:numberBoxCount;
+    console.log(displayCount);
+    if(divWidth < count*280){
+        document.getElementById("arrow-div1").setAttribute("style","display:flex");
+        document.getElementById("arrow-div2").setAttribute("style","display:flex");
+        console.log(divWidth);
+    }
+    else{
+        document.getElementById("arrow-div1").setAttribute("style","display:none");
+        document.getElementById("arrow-div2").setAttribute("style","display:none");
+        console.log("dd");
+    }
 }
