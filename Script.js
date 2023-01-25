@@ -3,7 +3,12 @@ let dataList;
 let displayList;
 const cityId = document.querySelector('#city0');
 document.getElementById("citychange").addEventListener("change", UpdateCity);
-
+document.getElementById("filter0").addEventListener("click",() => borderChange("filter0"));
+document.getElementById("filter1").addEventListener("click", () => borderChange("filter1"));
+document.getElementById("filter2").addEventListener("click", () => borderChange("filter2"));
+document.getElementById("left-button").addEventListener("click", () => midSectionScroll(-285));
+document.getElementById("right-button").addEventListener("click", () => midSectionScroll(285));
+document.getElementById("number-box").addEventListener("change", () => cardUpdate());
 (function (){ 
     dataList = cityData;
     console.log(dataList);
@@ -13,7 +18,8 @@ document.getElementById("citychange").addEventListener("change", UpdateCity);
         option.value = dataList[cityDetails].cityName;
         city.appendChild(option);}
     updateTopSection(document.getElementById("citychange").value); 
-
+    borderChange("filter0");
+    cardUpdate(); 
 })();
 function UpdateCity(){
   updateTopSection(document.getElementById("citychange").value);  
@@ -153,4 +159,41 @@ function errFunction(){
     for (var i = 0; i < errImgArray.length; i++) {
     errImgArray[i].setAttribute("style", "background-image: url('./HTML & CSS/General Images & Icons/warning.svg')");
     }
+}
+function borderChange(filterId){
+    for(let index=0; index<3; index++){
+        document.getElementById("filter"+index).setAttribute("style","border-bottom-style: none");
+    }
+    document.getElementById(filterId).setAttribute("style","border-bottom-style: solid")
+    displayListUpdate(filterId.substring(filterId.length-1,filterId.length));
+    cardUpdate();
+}
+function cardUpdate(){
+    let index = 0;
+    document.getElementById("midContainer").replaceChildren();
+    for(let city in dataList){
+            let clone = cityId.cloneNode(true);
+            clone.id='city'+index;
+            document.getElementById("midContainer").appendChild(clone);
+            clone.querySelector("#city-name").innerText=dataList[city].cityName;
+            clone.querySelector("#card-img").setAttribute("style","background-image: url('./HTML & CSS/Icons for cities/"+ city +".svg')");
+            clone.querySelector("#card-humidity").innerText=dataList[city].humidity;
+            clone.querySelector("#card-precipitation").innerText=dataList[city].precipitation;
+            let temperature = dataList[city].temperature;
+            clone.querySelector("#card-temp").innerText=temperature;
+            let tempImg = clone.querySelector("#card-temp-img");
+            temperature = temperature.substring(0,temperature.length-2);
+            updateTempImg(tempImg, temperature, 0);
+        index++;
+        if(index>document.getElementById("number-box").value-1){
+            break;
+        }
+    }
+}
+function midSectionScroll(val){
+    document.getElementById('midContainer').scrollLeft += val;
+}
+
+function displayListUpdate(sort){
+
 }
