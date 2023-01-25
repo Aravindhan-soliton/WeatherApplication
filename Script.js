@@ -174,11 +174,11 @@ function borderChange(filterId){
 }
 function cardUpdate(){
     let index = 0;
-    document.getElementById("midContainer").replaceChildren();
+    document.getElementById("mid-container").replaceChildren();
     for(let city in displayList){
             let clone = cityId.cloneNode(true);
             clone.id='city'+index;
-            document.getElementById("midContainer").appendChild(clone);
+            document.getElementById("mid-container").appendChild(clone);
             clone.querySelector("#city-name").innerText=displayList[city].cityName;
             clone.querySelector("#card-img").setAttribute("style","background-image: url('./HTML & CSS/Icons for cities/"+ displayList[city].cityName.toLowerCase() +".svg')");
             clone.querySelector("#card-humidity").innerText=displayList[city].humidity;
@@ -198,7 +198,7 @@ function cardUpdate(){
     updateScrollArrow();
 }
 function midSectionScroll(val){
-    document.getElementById('midContainer').scrollLeft += val;
+    document.getElementById('mid-container').scrollLeft += val;
 }
 
 function displayListUpdate(sort){
@@ -260,13 +260,14 @@ function updateScrollArrow(){
     let displayCount = displayList.length;
     let numberBoxCount = document.getElementById("number-box").value;
     let count = displayCount<numberBoxCount? displayCount:numberBoxCount;
-    console.log(displayCount);
     if(divWidth < count*280){
+        document.getElementById("mid-container").setAttribute("style","justify-content: none");
         document.getElementById("arrow-div1").setAttribute("style","display:flex");
         document.getElementById("arrow-div2").setAttribute("style","display:flex");
         console.log(divWidth);
     }
     else{
+        document.getElementById("mid-container").setAttribute("style","justify-content: center");
         document.getElementById("arrow-div1").setAttribute("style","display:none");
         document.getElementById("arrow-div2").setAttribute("style","display:none");
         console.log("dd");
