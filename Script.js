@@ -201,18 +201,31 @@ function displayListUpdate(sort){
             (city) =>
             Number(city.temperature.split("°C")[0]) < 20
             );
+            displayList.sort(
+            (a, b) => a.humidity.split("%")[0] - b.humidity.split("%")[0]
+            );
+            displayList.reverse();
+
     }
     else if(sort == 1){
         displayList = Object.values(dataList).filter(
             (city) =>
             Number(city.temperature.split("°C")[0]) > 19 &&
             Number(city.temperature.split("°C")[0]) < 28
-             );
+            );
+            displayList.sort(
+            (a, b) => a.precipitation.split("%")[0] - b.precipitation.split("%")[0]
+            );
+            displayList.reverse();
     }
     else{
         displayList = Object.values(dataList).filter(
             (city) =>
             Number(city.temperature.split("°C")[0]) > 29  
             );
+            displayList.sort(
+                (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
+            );
+            displayList.reverse();
     }
 }
