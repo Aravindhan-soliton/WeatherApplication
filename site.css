@@ -22,7 +22,7 @@
 .arrow-div {
 	align-self: center;
 	justify-content: center;
-	width: 8%;
+	width: 7.5%;
     cursor: pointer;
 }
 .bg {
@@ -710,6 +710,10 @@ p {
         margin-bottom: 0;
         width: 55px;
     }
+    .arrow {
+        height: 45px;
+        width: 45px;
+    }
     .center {
         width: 45px;
     }
@@ -865,6 +869,10 @@ p {
         height: 35px;
         margin-bottom: 0;
         width: 45px;
+    }
+    .arrow {
+        height: 40px;
+        width: 40px;
     }
     .border {
         margin-top: 20px;

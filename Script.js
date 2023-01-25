@@ -1,7 +1,9 @@
 let myInterval;
 let dataList;
 let displayList;
+let timer;
 const cityId = document.querySelector('#city0');
+document.getElementById("citychange").addEventListener("change", UpdateCity);
 document.getElementById("citychange").addEventListener("change", UpdateCity);
 document.getElementById("filter0").addEventListener("click",() => borderChange("filter0"));
 document.getElementById("filter1").addEventListener("click", () => borderChange("filter1"));
@@ -20,7 +22,6 @@ document.getElementById("number-box").addEventListener("change", () => cardUpdat
         city.appendChild(option);}
     updateTopSection(document.getElementById("citychange").value); 
     borderChange("filter0");
-    cardUpdate(); 
 })();
 function UpdateCity(){
   updateTopSection(document.getElementById("citychange").value);  
@@ -79,7 +80,6 @@ function updateCityTime(city){
         timeId.innerText = time;
         dateId.innerText = fullDate;
         secId.innerText = sec;
-            
         myStopFunction();
         myInterval = setInterval(myClock, 1000);
     } 
@@ -168,6 +168,8 @@ function borderChange(filterId){
     document.getElementById(filterId).setAttribute("style","border-bottom-style: solid")
     displayListUpdate(filterId.substring(filterId.length-1,filterId.length));
     cardUpdate();
+    clearInterval(timer);
+    timer = setInterval(cardUpdate, 1000);
 }
 function cardUpdate(){
     let index = 0;
@@ -180,6 +182,8 @@ function cardUpdate(){
             clone.querySelector("#card-img").setAttribute("style","background-image: url('./HTML & CSS/Icons for cities/"+ displayList[city].cityName.toLowerCase() +".svg')");
             clone.querySelector("#card-humidity").innerText=displayList[city].humidity;
             clone.querySelector("#card-precipitation").innerText=displayList[city].precipitation;
+            clone.querySelector("#card-date").innerText= updateCardDate(displayList[city].cityName.toLowerCase());
+            clone.querySelector("#card-time").innerText=  updateCardTime(displayList[city].cityName.toLowerCase());
             let temperature = displayList[city].temperature;
             clone.querySelector("#card-temp").innerText=temperature;
             let tempImg = clone.querySelector("#card-temp-img");
@@ -228,4 +232,24 @@ function displayListUpdate(sort){
             );
             displayList.reverse();
     }
+}
+function updateCardTime(city){
+    let dateTime = fetchTime(city);
+    let hour = (new Date(dateTime).getHours());
+    let min = new Date(dateTime).getMinutes();
+    const ampm = (hour<12) ? "AM" : "PM";
+    hour = hour % 12;
+    hour = hour==0 ? 12 : hour;
+    hour = hour<10 ? "0"+hour : hour; 
+    min = min<10 ? "0"+min : min; 
+    return hour+":"+min+" "+ampm;
+}
+function updateCardDate(city){
+    let dateTime = fetchTime(city);
+    const date = new Date(dateTime).getDate();
+    return (date<10 ? "0"+date : date) +"-"+ new Date().toLocaleString( 
+            "en-US",{month:'short'}, {timeZone: dateTime})+
+            "-"+
+            new Date(dateTime
+        ).getFullYear();
 }
