@@ -11,6 +11,7 @@ document.getElementById("right-button").addEventListener("click", () => midSecti
 document.getElementById("number-box").addEventListener("change", () => cardUpdate());
 (function (){ 
     dataList = cityData;
+    displayList = cityData;
     console.log(dataList);
     var city=document.getElementById("city");
     for ( let cityDetails in dataList) {
@@ -128,7 +129,7 @@ function updateTime(timeUpdate, city, hourAdd){
     timeUpdate.innerText = hour+ampm;
 }
 function updateTempImg(img, temp, val){
-    if(temp<18){
+    if(temp<19){
         img.setAttribute("style", "background-image: url('./HTML & CSS/Weather Icons/rainyIcon.svg')");
     }
     else if(temp<22 && val==1){
@@ -137,7 +138,7 @@ function updateTempImg(img, temp, val){
     else if(temp<29 && val==1){
         img.setAttribute("style", "background-image: url('./HTML & CSS/Weather Icons/cloudyIcon.svg')");
     }
-    else if(temp<20){
+    else if(temp<28){
         img.setAttribute("style", "background-image: url('./HTML & CSS/Weather Icons/snowflakeIcon.svg')");
     }
     else{
@@ -171,15 +172,15 @@ function borderChange(filterId){
 function cardUpdate(){
     let index = 0;
     document.getElementById("midContainer").replaceChildren();
-    for(let city in dataList){
+    for(let city in displayList){
             let clone = cityId.cloneNode(true);
             clone.id='city'+index;
             document.getElementById("midContainer").appendChild(clone);
-            clone.querySelector("#city-name").innerText=dataList[city].cityName;
-            clone.querySelector("#card-img").setAttribute("style","background-image: url('./HTML & CSS/Icons for cities/"+ city +".svg')");
-            clone.querySelector("#card-humidity").innerText=dataList[city].humidity;
-            clone.querySelector("#card-precipitation").innerText=dataList[city].precipitation;
-            let temperature = dataList[city].temperature;
+            clone.querySelector("#city-name").innerText=displayList[city].cityName;
+            clone.querySelector("#card-img").setAttribute("style","background-image: url('./HTML & CSS/Icons for cities/"+ displayList[city].cityName.toLowerCase() +".svg')");
+            clone.querySelector("#card-humidity").innerText=displayList[city].humidity;
+            clone.querySelector("#card-precipitation").innerText=displayList[city].precipitation;
+            let temperature = displayList[city].temperature;
             clone.querySelector("#card-temp").innerText=temperature;
             let tempImg = clone.querySelector("#card-temp-img");
             temperature = temperature.substring(0,temperature.length-2);
@@ -195,5 +196,23 @@ function midSectionScroll(val){
 }
 
 function displayListUpdate(sort){
-
+    if(sort==2){
+        displayList = Object.values(dataList).filter(
+            (city) =>
+            Number(city.temperature.split("°C")[0]) < 20
+            );
+    }
+    else if(sort == 1){
+        displayList = Object.values(dataList).filter(
+            (city) =>
+            Number(city.temperature.split("°C")[0]) > 19 &&
+            Number(city.temperature.split("°C")[0]) < 28
+             );
+    }
+    else{
+        displayList = Object.values(dataList).filter(
+            (city) =>
+            Number(city.temperature.split("°C")[0]) > 29  
+            );
+    }
 }
