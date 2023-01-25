@@ -1,5 +1,5 @@
 .am {
-	background-image: url("HTML & CSS/General Images & Icons/amState.svg");
+	background-image: url("./HTML & CSS/General Images & Icons/amState.svg");
 	background-repeat: no-repeat;
 	background-size: 80px;
 	height: 77px;
@@ -14,7 +14,6 @@
 	height: 50px;
 	justify-content: center;
 	width: 50px;
-    cursor: pointer;
 }
 .arrow-center {
 	display: flex;
@@ -24,9 +23,10 @@
 	align-self: center;
 	justify-content: center;
 	width: 8%;
+    cursor: pointer;
 }
 .bg {
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("HTML & CSS/General Images & Icons/background.svg");
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./HTML & CSS/General Images & Icons/background.svg");
 	background-size: cover;
 }
 .block {
@@ -44,7 +44,7 @@
 	width: 340px;
 }
 .block-humidity {
-	background-image: url("HTML & CSS/Weather Icons/humidityIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/humidityIcon.svg");
 	background-position-x: right;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -79,6 +79,8 @@
 	border-width: 1px;
 	color: #C1C1C6;
 	height: 70%;
+
+
 }
 .bottom {
 	display: flex;
@@ -100,13 +102,13 @@
 	width: 60%;
 }
 .card-img {
-	background: url("HTML & CSS/Icons for cities/dublin.svg");
+	background: url("./HTML & CSS/Icons for cities/dublin.svg");
 	background-position-x: right;
 	background-position-y: 65px;
 	background-repeat: no-repeat;
 	background-size: 80%;
 	height: 100%;
-	width: 260px;
+	width: 265px;
 }
 .card-temp {
 	align-self: start;
@@ -116,7 +118,7 @@
 	width: 40%;
 }
 .card-temp-img {
-	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/sunnyIcon.svg");
 	background-position-x: left;
 	background-position-y: bottom;
 	background-repeat: no-repeat;
@@ -143,31 +145,29 @@
 	justify-content: center;
 	width: 50px;
 }
-.centered {
-	left: 50%;
-	position: relative;
-	transform: translate(-50%, -20%);
-}
 .city-logo {
-	background-image: url("HTML & CSS/Icons for cities/bangkok.svg");
+	background-image: url("./HTML & CSS/Icons for cities/bangkok.svg");
 	background-repeat: no-repeat;
 	background-size: 95%;
 	height: 100%;
 	width: 118px;
+    align-items: center;
 }
 .city-logo-div {
 	height: 100%;
+    display: flex;
+    flex-direction:row-reverse;
+    width: 10%;
 }
 .city-name {
 	font-size: 20px;
 	font-weight: 400;
 }
 .city-height {
-	padding-left: 20px;
 	width: 100%;
 }
 .cloud {
-	background-image: url("HTML & CSS/Weather Icons/precipitationIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/precipitationIcon.svg");
 	background-position-x: left;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -184,13 +184,14 @@
 	font-weight: 400;
 }
 .cool-img {
-	background-image: url("HTML & CSS/Weather Icons/snowflakeIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/snowflakeIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
 	background-repeat: no-repeat;
-	background-size: 30px;
+	background-size: 34px;
 	height: 40px;
-	width: 40px;
+	width: 50px;
+    border-bottom-color: #00c0f1;
     cursor: pointer;
 }
 .date {
@@ -209,13 +210,14 @@
 	letter-spacing: 2px;
 }
 .display-top {
+    height: 35px;
 	align-self: center;
 	font-size: 20px;
-	margin-bottom: 5px;
-	width: 100px;
+    width:105px;
+    text-align: center;
 }
 .down-arrow {
-	background-image: url("HTML & CSS/General Images & Icons/arrowDown.svg");
+	background-image: url("./HTML & CSS/General Images & Icons/arrowDown.svg");
 	background-position-x: right;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -228,6 +230,7 @@
 	width: 100%;
 }
 .dropdown {
+    cursor: pointer;
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), gray;
 	border-color: transparent;
 	color: white;
@@ -236,8 +239,19 @@
 	font-weight: 100;
 	height: 80px;
 	padding-left: 20px;
-	width: 90%;
-    cursor: pointer;
+	width: 80%;
+    align-self: center;
+    outline: transparent;
+}
+.err-message{
+    width: 90%;
+    align-self: end;
+}
+.filter-button{
+    background-color:transparent;
+    border: transparent;
+    height: 40px;
+    width: 40px;
 }
 .flex {
 	display: flex;
@@ -259,6 +273,9 @@
 .float-right {
 	float: right;
 }
+.font20{
+    font-size: 20px;
+}
 .foot {
 	align-items: center;
 	background-color: #121212;
@@ -270,7 +287,7 @@
 }
 .foot-full {
 	align-items: center;
-	width: 90%;
+	width: 85%;
 }
 .foot-head {
 	font-size: 36px;
@@ -314,7 +331,7 @@
     height: 114%;
 }
 .humidity {
-	background-image: url("HTML & CSS/Weather Icons/humidityIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/humidityIcon.svg");
 	background-position-x: left;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -349,18 +366,12 @@
 	margin-top: -60px;
 }
 .mid-head {
-	align-items: center;
-	display: flex;
-	font-size: 25px;
-	justify-content: center;
-	width: 100%;
-}
-.mid-right {
-	left: 70%;
-	position: absolute;
+    height: 45px;
+    font-size: 25px;
+    width: 63%;
+    text-align: end;
 }
 .number-box {
-	align-self: center;
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), gray;
 	border: transparent;
 	color: white;
@@ -368,13 +379,14 @@
     cursor: pointer;
 }
 .rain-img {
-	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/rainyIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
 	background-repeat: no-repeat;
-	background-size: 30px;
+	background-size: 34px;
 	height: 40px;
 	width: 50px;
+    border-bottom-color: #00c0f1;
     cursor: pointer;
 }
 .row {
@@ -391,19 +403,22 @@
 }
 .scroll {
 	margin: 4px, 4px;
-	overflow-x: auto;
+	overflow-x: hidden;
 	overflow-y: hidden;
 	padding: 4px;
 	white-space: nowrap;
 	width: 100%;
 }
 .seconds {
+    padding-bottom: 2px;
 	font-size: 25px;
 }
 .space {
 	align-self: center;
 	justify-content: space-around;
 	width: 100%;
+
+
 }
 .sub {
 	display: flex;
@@ -415,13 +430,14 @@
 	padding-top: 30px;
 }
 .sun-img {
-	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/sunnyIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
 	background-repeat: no-repeat;
-	background-size: 30px;
+	background-size: 34px;
 	height: 40px;
-	width: 40px;
+	width: 50px;
+    border-bottom-color: #00c0f1;
     cursor: pointer;
 }
 .temp-full {
@@ -445,7 +461,7 @@
 	font-size: 21px;
 }
 .uparrow {
-	background-image: url("HTML & CSS/General Images & Icons/arrowUp.svg");
+	background-image: url("./HTML & CSS/General Images & Icons/arrowUp.svg");
 	background-position-x: right;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -465,25 +481,33 @@
 	height: 60px;
 }
 .weather1 {
-	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/rainyIcon.svg");
 }
 .weather2 {
-	background-image: url("HTML & CSS/Weather Icons/cloudyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/cloudyIcon.svg");
 }
 .weather3 {
-	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/sunnyIcon.svg");
 }
 .weather4 {
-	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/rainyIcon.svg");
 }
 .weather5 {
-	background-image: url("HTML & CSS/Weather Icons/cloudyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/cloudyIcon.svg");
 }
 .weather6 {
-	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+	background-image: url("./HTML & CSS/Weather Icons/rainyIcon.svg");
 }
 .width100 {
 	width: 120px;
+}
+.width85{
+    width: 85%;
+}
+.width30{
+    width: 37%;
+    justify-content: end;
+
 }
 div {
 	font-size: 20px;
@@ -516,7 +540,7 @@ p {
         width: 100%;
     }
     .cool-img {
-        background-size: 25px;
+        background-size: 29px;
         height: 35px;
         width: 40px;
     }
@@ -530,6 +554,11 @@ p {
     .digi-time {
         font-size: 28px;
     }
+    .display-top{
+        font-size: 18px;
+        width: 100px;
+        height: 27px;
+    }
     .down-height {
         height: 44%;
     }
@@ -537,6 +566,7 @@ p {
         font-size: 36px;
         height: 70px;
         padding-left: 18px;
+
     }
     .foot-head {
         font-size: 30px;
@@ -554,7 +584,7 @@ p {
         font-size: 24px;
     }
     .rain-img {
-        background-size: 25px;
+        background-size: 29px;
         height: 35px;
         width: 40px;
     }
@@ -565,7 +595,7 @@ p {
         padding-bottom: 70px;
     }
     .sun-img {
-        background-size: 25px;
+        background-size: 28px;
         height: 35px;
         width: 40px;
     }
@@ -598,14 +628,14 @@ p {
         margin-bottom: 0;
         width: 60px;
     }
-        .border {
+    .border {
         height: 60%;
     }
     .city-logo {
         width: 112px;
     }
     .cool-img {
-        background-size: 22px;
+        background-size: 25px;
         width: 35px;
     }
     .date {
@@ -614,11 +644,15 @@ p {
     .digi-time {
         font-size: 25px;
     }
+    .display-top{
+        font-size: 16px;
+        width: 80px;
+    }
     .dropdown {
         font-size: 32px;
         height: 60px;
         padding-left: 16px;
-        width: 90%;
+        width: 80%;
     }
     .foot-head {
         font-size: 24px;
@@ -635,11 +669,8 @@ p {
     .mid-head {
         font-size: 22px;
     }
-    .mid-right {
-        left: 67%;
-    }
     .rain-img {
-        background-size: 22px;
+        background-size: 25px;
         width: 35px;
     }
     .seconds {
@@ -649,7 +680,7 @@ p {
         padding-bottom: 60px;
     }
     .sun-img {
-        background-size: 22px;
+        background-size: 25px;
         width: 35px;
     }
     .time {
@@ -690,7 +721,7 @@ p {
         width: 90px;
     }
     .cool-img {
-        background-size: 20px;
+        background-size: 24px;
         width: 30px;
     }
     .date {
@@ -701,8 +732,7 @@ p {
     }
     .display-top {
         font-size: 16px;
-        height: 16px;
-        width: 90px;
+        height: 25px;
     }
     .dropdown {
         font-size: 28px;
@@ -715,11 +745,8 @@ p {
     .mid-head {
         font-size: 20px;
     }
-    .mid-right {
-        left: 67%;
-    }
     .rain-img {
-        background-size: 20px;
+        background-size: 24px;
         width: 30px;
     }
     .seconds {
@@ -729,7 +756,7 @@ p {
         padding-bottom: 50px;
     }
     .sun-img {
-        background-size: 20px;
+        background-size: 23px;
         width: 30px;
     }
     .title-font {
@@ -769,7 +796,7 @@ p {
         width: 71px;
     }
     .cool-img {
-        background-size: 16px;
+        background-size: 18px;
         width: 25px;
     }
     .date {
@@ -780,8 +807,7 @@ p {
     }
     .display-top {
         font-size: 16px;
-        height: 16px;
-        width: 80px;
+        height: 25px;
     }
     .dropdown {
         font-size: 25px;
@@ -793,12 +819,10 @@ p {
     }
     .mid-head {
         font-size: 18px;
-    }
-    .mid-right {
-        left: 70%;
+        height: 33px;
     }
     .rain-img {
-        background-size: 16px;
+        background-size: 18px;
         width: 25px;
     }
     .seconds {
@@ -808,7 +832,7 @@ p {
         padding-bottom: 40px;
     }
     .sun-img {
-        background-size: 16px;
+        background-size: 18px;
         width: 25px;
     }
     .temp-full {
@@ -821,7 +845,7 @@ p {
         font-size: 14px;
     }
     .value-font {
-        font-size: 26px;
+        font-size: 25px;
     }
     .weather {
         background-size: 50%;
@@ -846,6 +870,16 @@ p {
     .border {
         margin-top: 20px;
     }
+    .card-data {
+        margin: 14px;
+        width: 60%;
+    }
+    .card-img {
+        background-position-y: 95px;
+        background-size: 80%;
+        height: 100%;
+        width: 225px;
+    }
     .center {
         width: 30px;
     }
@@ -853,7 +887,7 @@ p {
         width: 70px;
     }
     .cool-img {
-        background-size: 14px;
+        background-size: 16px;
         width: 22px;
     }
     .date {
@@ -867,9 +901,10 @@ p {
         font-size: 14px;
     }
     .display-top {
-        font-size: 15px;
+        font-size: 12px;
         height: 16px;
-        width: 72px;
+        width: 60px;
+        margin: 0px;
     }
     .dropdown {
         font-size: 20px;
@@ -898,17 +933,17 @@ p {
         width: 23px;
     }
     .rain-img {
-        background-size: 14px;
+        background-size: 16px;
         width: 22px;
     }
     .seconds {
-        font-size: 12px;
+      font-size: 12px;
     }
     .sub {
         padding-bottom: 30px;
     }
     .sun-img {
-        background-size: 14px;
+        background-size: 16px;
         width: 22px;
     }
     .title-font {
