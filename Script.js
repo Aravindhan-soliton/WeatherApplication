@@ -15,7 +15,6 @@ window.addEventListener("resize", updateScrollArrow);
 (function (){ 
     dataList = cityData;
     displayList = cityData;
-    console.log(dataList);
     var city=document.getElementById("city");
     for ( let cityDetails in dataList) {
         var option = document.createElement("OPTION");
@@ -52,7 +51,7 @@ function updateCityImg(city){
     document.getElementById('city-logo').setAttribute("style", "background-image: url('./HTML & CSS/Icons for cities/"+ city +".svg')");
 }
 function fetchTime(city){
-    return new Date().toLocaleString("en-US", {timeZone: dataList[city].timeZone});
+    return new Date().toLocaleString("en-US", {timeZone: city.timeZone});
 }
 function updateCityTime(city){
     myClock();
@@ -62,7 +61,7 @@ function updateCityTime(city){
         let dateId = document.getElementById("date");
         let timeId = document.getElementById("time");
         let secId = document.getElementById("sec");
-        const dateTime = fetchTime(city);
+        const dateTime = fetchTime(dataList[city]);
         const date = new Date(dateTime).getDate();
         let hour = (new Date(dateTime).getHours());
         const min = new Date(dateTime).getMinutes();
@@ -170,10 +169,11 @@ function borderChange(filterId){
     displayListUpdate(filterId.substring(filterId.length-1,filterId.length));
     cardUpdate();
     clearInterval(timer);
-    timer = setInterval(cardUpdate, 1000);
+    timer = setInterval(UpdateCardDateTime, 500);
 }
 function cardUpdate(){
     let index = 0;
+    clearInterval(timer);
     document.getElementById("mid-container").replaceChildren();
     for(let city in displayList){
             let clone = cityId.cloneNode(true);
@@ -183,8 +183,10 @@ function cardUpdate(){
             clone.querySelector("#card-img").setAttribute("style","background-image: url('./HTML & CSS/Icons for cities/"+ displayList[city].cityName.toLowerCase() +".svg')");
             clone.querySelector("#card-humidity").innerText=displayList[city].humidity;
             clone.querySelector("#card-precipitation").innerText=displayList[city].precipitation;
-            clone.querySelector("#card-date").innerText= updateCardDate(displayList[city].cityName.toLowerCase());
-            clone.querySelector("#card-time").innerText=  updateCardTime(displayList[city].cityName.toLowerCase());
+            clone.querySelector("#card-date").id="card-date"+index;
+            clone.querySelector("#card-time").id="card-time"+index;
+            updateCardDate(displayList[city].cityName.toLowerCase(),"card-date"+index);
+            updateCardTime(displayList[city].cityName.toLowerCase(),"card-time"+index);
             let temperature = displayList[city].temperature;
             clone.querySelector("#card-temp").innerText=temperature;
             let tempImg = clone.querySelector("#card-temp-img");
@@ -235,7 +237,24 @@ function displayListUpdate(sort){
             displayList.reverse();
     }
 }
-function updateCardTime(city){
+function UpdateCardDateTime(){
+
+    let numBoxValue = document.getElementById("number-box").value;
+    let index = 0;
+    for(let city in displayList){
+        try{
+        updateCardDate(displayList[city], "card-date"+index);
+        updateCardTime(displayList[city], "card-time"+index);
+        }
+        catch{
+            console.log("err ",numBoxValue," ",displayList[city], "card-date"+index );
+        }
+        if(index>=parseInt(numBoxValue)-1)
+        break;
+        index++;
+    }
+}
+function updateCardTime(city, timeId){
     let dateTime = fetchTime(city);
     let hour = (new Date(dateTime).getHours());
     let min = new Date(dateTime).getMinutes();
@@ -244,16 +263,12 @@ function updateCardTime(city){
     hour = hour==0 ? 12 : hour;
     hour = hour<10 ? "0"+hour : hour; 
     min = min<10 ? "0"+min : min; 
-    return hour+":"+min+" "+ampm;
+    document.getElementById(timeId).innerText=   hour+":"+min+" "+ampm;
 }
-function updateCardDate(city){
+function updateCardDate(city, dateId){
     let dateTime = fetchTime(city);
     const date = new Date(dateTime).getDate();
-    return (date<10 ? "0"+date : date) +"-"+ new Date().toLocaleString( 
-            "en-US",{month:'short'}, {timeZone: dateTime})+
-            "-"+
-            new Date(dateTime
-        ).getFullYear();
+    document.getElementById(dateId).innerText=(date<10 ? "0"+date : date) +"-"+ new Date().toLocaleString( "en-US",{month:'short'}, {timeZone: dateTime})+ "-"+new Date(dateTime).getFullYear();
 }
 function updateScrollArrow(){
     let divWidth = document.getElementById("card-div").clientWidth;
@@ -264,12 +279,10 @@ function updateScrollArrow(){
         document.getElementById("mid-container").setAttribute("style","justify-content: none");
         document.getElementById("arrow-div1").setAttribute("style","display:flex");
         document.getElementById("arrow-div2").setAttribute("style","display:flex");
-        console.log(divWidth);
     }
     else{
         document.getElementById("mid-container").setAttribute("style","justify-content: center");
         document.getElementById("arrow-div1").setAttribute("style","display:none");
         document.getElementById("arrow-div2").setAttribute("style","display:none");
-        console.log("dd");
     }
 }
