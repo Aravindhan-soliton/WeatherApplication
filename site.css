@@ -96,8 +96,7 @@
     box-shadow: 10px 10px 5px 	#303030;
 }
 .card:hover{
-	background-color: #1a1a1a;
-
+	background-color: #161616;
     box-shadow: 10px 10px 5px 	black;
 }
 .card-data {
@@ -415,7 +414,6 @@
 	padding: 4px;
 	white-space: nowrap;
 	width: 100%;
-    
 }
 .seconds {
     padding-bottom: 2px;

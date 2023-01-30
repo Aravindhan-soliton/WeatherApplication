@@ -8,8 +8,8 @@ document.getElementById("citychange").addEventListener("change", UpdateCity);
 document.getElementById("filter0").addEventListener("click",() => borderChange("filter0"));
 document.getElementById("filter1").addEventListener("click", () => borderChange("filter1"));
 document.getElementById("filter2").addEventListener("click", () => borderChange("filter2"));
-document.getElementById("left-button").addEventListener("click", () => midSectionScroll(-285));
-document.getElementById("right-button").addEventListener("click", () => midSectionScroll(285));
+document.getElementById("left-button").addEventListener("click", () => midSectionScroll(-2.9));
+document.getElementById("right-button").addEventListener("click", () => midSectionScroll(2.9));
 document.getElementById("number-box").addEventListener("change", () => cardUpdate());
 window.addEventListener("resize", updateScrollArrow);
 (function (){ 
@@ -199,8 +199,20 @@ function cardUpdate(){
     }
     updateScrollArrow();
 }
-function midSectionScroll(val){
-    document.getElementById('mid-container').scrollLeft += val;
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+async function midSectionScroll(val){
+    let temp=7;
+    if(val<0)
+    temp=1;
+    for(let i=0; i<100; i++){
+        await sleep(4);
+        if(i%temp==0)
+        document.getElementById('mid-container').scrollLeft += val; 
+        else
+        document.getElementById('mid-container').scrollLeft += (val>0)?val+0.1:-1; 
+    }
 }
 
 function displayListUpdate(sort){
@@ -213,7 +225,6 @@ function displayListUpdate(sort){
             (a, b) => a.humidity.split("%")[0] - b.humidity.split("%")[0]
             );
             displayList.reverse();
-
     }
     else if(sort == 1){
         displayList = Object.values(dataList).filter(
@@ -238,7 +249,6 @@ function displayListUpdate(sort){
     }
 }
 function UpdateCardDateTime(){
-
     let numBoxValue = document.getElementById("number-box").value;
     let index = 0;
     for(let city in displayList){
@@ -275,7 +285,7 @@ function updateScrollArrow(){
     let displayCount = displayList.length;
     let numberBoxCount = document.getElementById("number-box").value;
     let count = displayCount<numberBoxCount? displayCount:numberBoxCount;
-    if(divWidth < count*280){
+    if(divWidth < count*280+20){
         document.getElementById("mid-container").setAttribute("style","justify-content: none");
         document.getElementById("arrow-div1").setAttribute("style","display:flex");
         document.getElementById("arrow-div2").setAttribute("style","display:flex");
