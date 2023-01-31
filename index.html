@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <!-- Head Section -->
+    <div class="bg head">
+        <div class="sub">
+            <!-- City Logo -->
+            <div class="city-logo-div">
+                <div class="city-logo">
+                </div>
+            </div>
+            <!-- City Selection and Date Time -->
+            <div class="time bottom">
+                <!-- City Seclection -->
+                <div class="city-height bottom">
+                    <select class="dropdown" name="cities" id="cities">
+                        <option value="Delhi">New Delhi</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Kolkata">Dublin</option>
+                        <option value="Kolkata">London</option>
+                        <option value="Kolkata">Nome</option>
+                        <option value="Kolkata">Moscow</option>
+                    </select>
+                </div>
+                <!-- Date Time -->
+                <div class="date-height bottom">
+                    <div class="flex row">
+                        <p class="digi-time">10:10:<span class="seconds">14</span>
+                        </p>
+                        <div class="am"></div>
+                    </div>
+                    <p class="date">01-Mar-2020</p>
+                </div>
+            </div>
+            <!-- Weather Details -->
+            <div class="temp-full">
+                <div class="flex">
+                    <div class="half-height bottom ">
+                        <p class="title-font">
+                            Temp &deg;C
+                        </p>
+                        <p class="value-font bold">
+                            25 C
+                        </p>
+                    </div>
+                    <div class="down-height bottom">
+                        <p class="title-font">
+                            Temp F
+                        </p>
+                        <p class="value-font bold">
+                            78 F
+                        </p>
+                    </div>
+                </div>
+                <div class="flex1">
+                    <div class="line-temp-full">
+                    <div class="  border">
+                    </div>
+                </div>
+                <div class="line-temp-full">
+                    <div class=" border">
+                    </div>
+                </div>
+                </div>
+                <div class="flex">
+                    <div class="half-height bottom  ">
+                        <p class="title-font">
+                            Humidity
+                        </p>
+                        <p class="value-font lighter">
+                            <span class="bold">26</span>%
+                        </p>
+                    </div>
+                    <div class="down-height bottom ">
+                        <p class="title-font">
+                            Precipition
+                        </p>
+                        <p class="value-font lighter">
+                            <span class="bold">0</span>%
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Next five hours  -->
+            <div class=" flex hour-values">
+                <div class="flex row space ">
+                    <div>
+                        <div class="center ">
+                            NOW
+                        </div>
+                        <div class="center ">
+                            |
+                        </div>
+                        <div class="center weather weather1 space">
+                        </div>
+                        <div class="center">
+                            6
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center">
+                            11AM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather weather2 space">
+
+                        </div>
+                        <div class="center">
+                            7
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center">
+                            12PM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather weather3 space">
+
+                        </div>
+                        <div class="center">
+                            7
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center">
+                            1PM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather weather4 space">
+
+                        </div>
+                        <div class="center">
+                            8
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center">
+                            2PM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather weather5 space">
+
+                        </div>
+                        <div class="center">
+                            8
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center">
+                            3PM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather weather6 ">
+
+                        </div>
+                        <div class="center">
+                            6
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mid Section -->
+    <div class="mid">
+        <div class="sub-mid">
+            <!-- Mid Heading -->
+            <div class="flex row">
+                <div class="centered mid-head">
+                    Top cities around world
+                </div>
+                <div class="mid-right">
+                    <div class="flex row">
+                        <div class="sun-img "></div>
+                        <div class="cool-img "></div>
+                        <div class="rain-img  "></div>
+                        <div class="display-top ">
+                            Display Top
+                        </div>
+                        <div class="center">
+                            <input class="number-box " value="4" type="number" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Cards -->
+            <div class="flex row">
+                <div class="arrow-div">
+                    <div class="arrow-center">
+                        <div class="arrow">
+                            <p class="gt">&lt;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex row cards scroll">
+                    <div class=" card ">
+                        <div class="card-img">
+                            <div class="flex row">
+                                <div class="card-data">
+                                    <p class="city-name">New Delhi</p><br>
+                                    <p class="time-date">10:00 AM</p><br>
+                                    <p class="time-date">2-Mar-2020</p><br>
+                                    <div class="flex row">
+                                        <div class="humidity"></div>
+                                        <p class="card-value">53%</p>
+                                    </div>
+                                    <div class="flex row">
+                                        <div class="cloud"></div>
+                                        <p class="card-value">10%</p>
+                                    </div>
+                                </div>
+                                <div class="card-temp card-data">
+                                    <div class="card-temp-img"></div>
+                                    <div class="card-temp-value"> 25 &deg;C</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" card">
+                        <div class="card-img">
+                            <div class="flex row">
+                                <div class="card-data">
+                                    <p class="city-name">New Delhi</p><br>
+                                    <p class="time-date">10:00 AM</p><br>
+                                    <p class="time-date">2-Mar-2020</p><br>
+                                    <div class="flex row">
+                                        <div class="humidity"></div>
+                                        <p class="card-value">53%</p>
+                                    </div>
+                                    <div class="flex row">
+                                        <div class="cloud"></div>
+                                        <p class="card-value">10%</p>
+                                    </div>
+                                </div>
+                                <div class="card-temp card-data">
+                                    <div class="card-temp-img"></div>
+                                    <div class="card-temp-value"> 25 &deg;C</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" card ">
+                        <div class="card-img">
+                            <div class="flex row">
+                                <div class="card-data">
+                                    <p class="city-name">New Delhi</p><br>
+                                    <p class="time-date">10:00 AM</p><br>
+                                    <p class="time-date">2-Mar-2020</p><br>
+                                    <div class="flex row">
+                                        <div class="humidity"></div>
+                                        <p class="card-value">53%</p>
+                                    </div>
+                                    <div class="flex row">
+                                        <div class="cloud"></div>
+                                        <p class="card-value">10%</p>
+                                    </div>
+                                </div>
+                                <div class="card-temp card-data">
+                                    <div class="card-temp-img"></div>
+                                    <div class="card-temp-value"> 25 &deg;C</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" card">
+                        <div class="card-img">
+                            <div class="flex row">
+                                <div class="card-data">
+                                    <p class="city-name">New Delhi</p><br>
+                                    <p class="time-date">10:00 AM</p><br>
+                                    <p class="time-date">2-Mar-2020</p><br>
+                                    <div class="flex row">
+                                        <div class="humidity"></div>
+                                        <p class="card-value">53%</p>
+                                    </div>
+                                    <div class="flex row">
+                                        <div class="cloud"></div>
+                                        <p class="card-value">10%</p>
+                                    </div>
+                                </div>
+                                <div class="card-temp card-data">
+                                    <div class="card-temp-img"></div>
+                                    <div class="card-temp-value"> 25 &deg;C</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" card">
+                        <div class="card-img">
+                            <div class="flex row">
+                                <div class="card-data">
+                                    <p class="city-name">New Delhi</p><br>
+                                    <p class="time-date">10:00 AM</p><br>
+                                    <p class="time-date">2-Mar-2020</p><br>
+                                    <div class="flex row">
+                                        <div class="humidity"></div>
+                                        <p class="card-value">53%</p>
+                                    </div>
+                                    <div class="flex row">
+                                        <div class="cloud"></div>
+                                        <p class="card-value">10%</p>
+                                    </div>
+                                </div>
+                                <div class="card-temp card-data">
+                                    <div class="card-temp-img"></div>
+                                    <div class="card-temp-value"> 25 &deg;C</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow-div">
+                    <div class="arrow-center">
+                        <div class="arrow">
+                            <p class="gt">&gt;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Foot Section -->
+    <div class="flex foot">
+        <div class="foot-full">
+            <!-- Foot Heading -->
+            <div class="flex foot-center">
+            <div class="flex row space foot-head-bar">
+                <div class="foot-head">
+                Cities across continents at a Glance
+            </div>
+            <div class="flex row flex-end foot-right-width ">
+                <div class="foot-head-bar-right">
+                    Continent Name
+                </div>
+                <div class="uparrow">
+                </div>
+                <div class="foot-head-bar-right">
+                    Temperature
+                </div>
+                <div class="down-arrow">
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- BLocks -->
+            <div class="scheduler-grid">
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="flex block-left">
+                        <div class="continent-name">
+                            Asia
+                        </div>
+                        <div >
+                            Delhi, 10:10 AM
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div>53%</div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>

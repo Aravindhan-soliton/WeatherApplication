@@ -1,0 +1,932 @@
+.am {
+	background-image: url("HTML & CSS/General Images & Icons/amState.svg");
+	background-repeat: no-repeat;
+	background-size: 80px;
+	height: 77px;
+	width: 90px;
+}
+.arrow {
+	align-items: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FFFFFF;
+	border-radius: 80px;
+	color: #181818;
+	display: flex;
+	height: 50px;
+	justify-content: center;
+	width: 50px;
+    cursor: pointer;
+}
+.arrow-center {
+	display: flex;
+	justify-content: center;
+}
+.arrow-div {
+	align-self: center;
+	justify-content: center;
+	width: 8%;
+}
+.bg {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("HTML & CSS/General Images & Icons/background.svg");
+	background-size: cover;
+}
+.block {
+	background: #2E2E2E;
+	border: transparent;
+	display: flex;
+	flex-direction: row;
+	height: 70px;
+	padding: 10px;
+	width: 330px;
+}
+.block:hover {
+	background-color: #3f3f3f;
+	height: 80px;
+	width: 340px;
+}
+.block-humidity {
+	background-image: url("HTML & CSS/Weather Icons/humidityIcon.svg");
+	background-position-x: right;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 80%;
+	height: 30px;
+	width: 30px;
+}
+.block-left {
+	justify-content: space-between;
+	width: 100%;
+}
+.block-right {
+	align-items: flex-end;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.block-temp {
+	font-size: 25px;
+	font-weight: 500;
+}
+.block-temp-value {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+.bold {
+	font-weight: 600;
+}
+.border {
+	border-left: dotted;
+	border-width: 1px;
+	color: #C1C1C6;
+	height: 70%;
+}
+.bottom {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.card {
+	background-color: #181818;
+	display: flex;
+	height: 250px;
+	margin: 10px;
+	margin-bottom: 15px;
+}
+.card:hover{
+    background-color: #3f3f3f;
+}
+.card-data {
+	margin: 20px;
+	width: 60%;
+}
+.card-img {
+	background: url("HTML & CSS/Icons for cities/dublin.svg");
+	background-position-x: right;
+	background-position-y: 65px;
+	background-repeat: no-repeat;
+	background-size: 80%;
+	height: 100%;
+	width: 260px;
+}
+.card-temp {
+	align-self: start;
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	width: 40%;
+}
+.card-temp-img {
+	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
+	background-position-x: left;
+	background-position-y: bottom;
+	background-repeat: no-repeat;
+	background-size: 80%;
+	height: 25px;
+	width: 25px;
+}
+.card-temp-value {
+	font-size: 20px;
+	font-weight: 500;
+}
+.card-value {
+	font-size: 14px;
+	font-weight: 400;
+}
+.cards {
+	justify-content: space-between;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+.center {
+	align-self: center;
+	display: flex;
+	justify-content: center;
+	width: 50px;
+}
+.centered {
+	left: 50%;
+	position: relative;
+	transform: translate(-50%, -20%);
+}
+.city-logo {
+	background-image: url("HTML & CSS/Icons for cities/bangkok.svg");
+	background-repeat: no-repeat;
+	background-size: 95%;
+	height: 100%;
+	width: 118px;
+}
+.city-logo-div {
+	height: 100%;
+}
+.city-name {
+	font-size: 20px;
+	font-weight: 400;
+}
+.city-height {
+	padding-left: 20px;
+	width: 100%;
+}
+.cloud {
+	background-image: url("HTML & CSS/Weather Icons/precipitationIcon.svg");
+	background-position-x: left;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 80%;
+	height: 20px;
+	width: 20px;
+}
+.column {
+	flex-direction: column;
+}
+.continent-name {
+	color: #FFF461;
+	font-size: 20px;
+	font-weight: 400;
+}
+.cool-img {
+	background-image: url("HTML & CSS/Weather Icons/snowflakeIcon.svg");
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 30px;
+	height: 40px;
+	width: 40px;
+    cursor: pointer;
+}
+.date {
+	font-size: 22px;
+	font-weight: 400;
+}
+.date-height {
+	height: 38%;
+	padding-left: 20px;
+	width: 100%;
+}
+.digi-time {
+	color: #FFE5B4;
+	font-size: 33px;
+	font-weight: 400;
+	letter-spacing: 2px;
+}
+.display-top {
+	align-self: center;
+	font-size: 20px;
+	margin-bottom: 5px;
+	width: 100px;
+}
+.down-arrow {
+	background-image: url("HTML & CSS/General Images & Icons/arrowDown.svg");
+	background-position-x: right;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 80%;
+	height: 30px;
+	width: 30px;
+}
+.down-height {
+	height: 50%;
+	width: 100%;
+}
+.dropdown {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), gray;
+	border-color: transparent;
+	color: white;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 40px;
+	font-weight: 100;
+	height: 80px;
+	padding-left: 20px;
+	width: 90%;
+    cursor: pointer;
+}
+.flex {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.flex-end {
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+.flex1 {
+	display: flex;
+	flex-direction: column;
+	width: 1px;
+}
+.float-in {
+	float: inherit;
+}
+.float-right {
+	float: right;
+}
+.foot {
+	align-items: center;
+	background-color: #121212;
+	color: white;
+}
+.foot-center {
+	justify-content: space-between;
+	width: 100%;
+}
+.foot-full {
+	align-items: center;
+	width: 90%;
+}
+.foot-head {
+	font-size: 36px;
+	width: 90%;
+}
+.foot-head-bar {
+	align-items: center;
+	height: 100px;
+	justify-content: center;
+	margin-bottom: 20px;
+	width: 98%;
+}
+.foot-head-bar-right {
+	font-size: 25px;
+	font-weight: lighter;
+	margin: 0px 10px 0px 20px;
+}
+.foot-right-width {
+	width: 70%;
+}
+.gt {
+	font-size: 40px;
+	font-weight: 900;
+	padding-bottom: 8px;
+}
+.half-height {
+	height: 49%;
+	width: 100%;
+}
+.head {
+	align-items: center;
+	color: #F1F1F1;
+	display: flex;
+	height: 350px;
+	min-height: 200px;
+	width: 100%;
+}
+.hour-values {
+	justify-content: space-evenly;
+	width: 45%;
+    height: 114%;
+}
+.humidity {
+	background-image: url("HTML & CSS/Weather Icons/humidityIcon.svg");
+	background-position-x: left;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 80%;
+	height: 22px;
+	width: 22px;
+}
+.img {
+	height: 60px;
+	width: 60px;
+}
+.lighter {
+	font-weight: 100;
+}
+.line {
+	height: 82%;
+}
+.line-temp-full {
+	align-items: flex-end;
+	display: flex;
+	height: 49%;
+	width: 100%;
+}
+.mid {
+	background-color: #121212;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	height: max-content;
+	margin-top: -60px;
+}
+.mid-head {
+	align-items: center;
+	display: flex;
+	font-size: 25px;
+	justify-content: center;
+	width: 100%;
+}
+.mid-right {
+	left: 70%;
+	position: absolute;
+}
+.number-box {
+	align-self: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), gray;
+	border: transparent;
+	color: white;
+	width: 30px;
+    cursor: pointer;
+}
+.rain-img {
+	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 30px;
+	height: 40px;
+	width: 50px;
+    cursor: pointer;
+}
+.row {
+	align-items: end;
+	flex-direction: row;
+	min-height: 40px;
+}
+.scheduler-grid {
+	display: grid;
+	grid-auto-rows: 100px;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(350px, 0fr));
+	justify-content: space-around;
+}
+.scroll {
+	margin: 4px, 4px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 4px;
+	white-space: nowrap;
+	width: 100%;
+}
+.seconds {
+	font-size: 25px;
+}
+.space {
+	align-self: center;
+	justify-content: space-around;
+	width: 100%;
+}
+.sub {
+	display: flex;
+	height: 65%;
+	padding-bottom: 6%;
+	width: 100%;
+}
+.sub-mid {
+	padding-top: 30px;
+}
+.sun-img {
+	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 30px;
+	height: 40px;
+	width: 40px;
+    cursor: pointer;
+}
+.temp-full {
+	display: flex;
+	flex-direction: row;
+	width: 27%;
+}
+.time {
+	font-size: 33px;
+	gap: 30px;
+	height: 100%;
+	margin: 0px;
+	width: 25%;
+}
+.time-date {
+	font-size: 16px;
+	font-weight: 400;
+}
+.title-font {
+	align-self: center;
+	font-size: 21px;
+}
+.uparrow {
+	background-image: url("HTML & CSS/General Images & Icons/arrowUp.svg");
+	background-position-x: right;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 80%;
+	height: 30px;
+	width: 30px;
+}
+.value-font {
+	align-self: center;
+	font-size: 40px;
+}
+.weather {
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 70%;
+	height: 60px;
+}
+.weather1 {
+	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+}
+.weather2 {
+	background-image: url("HTML & CSS/Weather Icons/cloudyIcon.svg");
+}
+.weather3 {
+	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
+}
+.weather4 {
+	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+}
+.weather5 {
+	background-image: url("HTML & CSS/Weather Icons/cloudyIcon.svg");
+}
+.weather6 {
+	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+}
+.width100 {
+	width: 120px;
+}
+div {
+	font-size: 20px;
+}
+html,
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: lighter;
+	height: 100%;
+	margin: 0;
+}
+p {
+	display: inline;
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin: 0;
+	padding: 0;
+}
+@media only screen and (max-width: 1125px) {
+    .am {
+        background-size: 65px;
+        height: 63px;
+        width: 70px;
+    }
+    .city-logo {
+        width: 120px;
+    }
+    .city-height {
+        height: 63%;
+        width: 100%;
+    }
+    .cool-img {
+        background-size: 25px;
+        height: 35px;
+        width: 40px;
+    }
+    .date {
+        font-size: 22px;
+    }
+    .date-height {
+        height: 37%;
+        width: 100%;
+    }
+    .digi-time {
+        font-size: 28px;
+    }
+    .down-height {
+        height: 44%;
+    }
+    .dropdown {
+        font-size: 36px;
+        height: 70px;
+        padding-left: 18px;
+    }
+    .foot-head {
+        font-size: 30px;
+    }
+    .foot-head-bar-right {
+        font-size: 20px;
+    }
+    .half-height {
+        height: 52%;
+    }
+    .head {
+        height: 350px;
+    }
+    .mid-head {
+        font-size: 24px;
+    }
+    .rain-img {
+        background-size: 25px;
+        height: 35px;
+        width: 40px;
+    }
+    .seconds {
+        font-size: 22px;
+    }
+    .sub {
+        padding-bottom: 70px;
+    }
+    .sun-img {
+        background-size: 25px;
+        height: 35px;
+        width: 40px;
+    }
+    .time {
+        gap: 19px;
+        height: 94%;
+    }
+    .title-font {
+        font-size: 20px;
+    }
+    .value-font {
+        font-size: 33px;
+    }
+    .weather {
+        background-size: 60%;
+        height: 55px;
+    }
+    div {
+        font-size: 18px;
+    }
+    p {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 970px) {
+    .am {
+        background-size: 50px;
+        height: 50px;
+        margin-bottom: 0;
+        width: 60px;
+    }
+        .border {
+        height: 60%;
+    }
+    .city-logo {
+        width: 112px;
+    }
+    .cool-img {
+        background-size: 22px;
+        width: 35px;
+    }
+    .date {
+        font-size: 18px;
+    }
+    .digi-time {
+        font-size: 25px;
+    }
+    .dropdown {
+        font-size: 32px;
+        height: 60px;
+        padding-left: 16px;
+        width: 90%;
+    }
+    .foot-head {
+        font-size: 24px;
+    }
+    .foot-head-bar-right {
+        font-size: 16px;
+    }
+    .head {
+        height: 325px;
+    }
+    .line {
+        height: 83%;
+    }
+    .mid-head {
+        font-size: 22px;
+    }
+    .mid-right {
+        left: 67%;
+    }
+    .rain-img {
+        background-size: 22px;
+        width: 35px;
+    }
+    .seconds {
+        font-size: 18px;
+    }
+    .sub {
+        padding-bottom: 60px;
+    }
+    .sun-img {
+        background-size: 22px;
+        width: 35px;
+    }
+    .time {
+        width: 30%;
+    }
+    .title-font {
+        font-size: 16px;
+    }
+    .value-font {
+        font-size: 30px;
+    }
+    .weather {
+        background-size: 50%;
+        height: 43px;
+    }
+    div {
+        font-size: 16px;
+    }
+    p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .am {
+        background-size: 45px;
+        height: 45px;
+        margin-bottom: 0;
+        width: 55px;
+    }
+    .center {
+        width: 45px;
+    }
+    .center {
+        width: 30px;
+    }
+    .city-logo {
+        width: 90px;
+    }
+    .cool-img {
+        background-size: 20px;
+        width: 30px;
+    }
+    .date {
+        font-size: 16px;
+    }
+    .digi-time {
+        font-size: 22px;
+    }
+    .display-top {
+        font-size: 16px;
+        height: 16px;
+        width: 90px;
+    }
+    .dropdown {
+        font-size: 28px;
+        height: 50px;
+        padding-left: 14px;
+    }
+    .head {
+        height: 280px;
+    }
+    .mid-head {
+        font-size: 20px;
+    }
+    .mid-right {
+        left: 67%;
+    }
+    .rain-img {
+        background-size: 20px;
+        width: 30px;
+    }
+    .seconds {
+        font-size: 16px;
+    }
+    .sub {
+        padding-bottom: 50px;
+    }
+    .sun-img {
+        background-size: 20px;
+        width: 30px;
+    }
+    .title-font {
+        font-size: 14px;
+    }
+    .value-font {
+        font-size: 28px;
+    }
+    .weather {
+        background-size: 80%;
+        height: 36px;
+    }
+    div {
+        font-size: 14px;
+    }
+    p {
+        font-size: 12px;
+        letter-spacing: 0px;
+    }
+
+}
+
+@media only screen and (max-width: 750px) {
+    .am {
+        background-size: 40px;
+        height: 40px;
+        margin-bottom: 0;
+        width: 50px;
+    }
+    .border {
+        margin-top: 18px;
+    }
+    .center {
+        width: 40px;
+    }
+    .city-logo {
+        width: 71px;
+    }
+    .cool-img {
+        background-size: 16px;
+        width: 25px;
+    }
+    .date {
+        font-size: 16px;
+    }
+    .digi-time {
+        font-size: 22px;
+    }
+    .display-top {
+        font-size: 16px;
+        height: 16px;
+        width: 80px;
+    }
+    .dropdown {
+        font-size: 25px;
+        height: 45px;
+        padding-left: 12px;
+    }
+    .head {
+        height: 240px;
+    }
+    .mid-head {
+        font-size: 18px;
+    }
+    .mid-right {
+        left: 70%;
+    }
+    .rain-img {
+        background-size: 16px;
+        width: 25px;
+    }
+    .seconds {
+        font-size: 16px;
+    }
+    .sub {
+        padding-bottom: 40px;
+    }
+    .sun-img {
+        background-size: 16px;
+        width: 25px;
+    }
+    .temp-full {
+        width: 25%;
+    }
+    .time {
+        width: 25%;
+    }
+    .title-font {
+        font-size: 14px;
+    }
+    .value-font {
+        font-size: 26px;
+    }
+    .weather {
+        background-size: 50%;
+        height: 30px;
+    }
+    div {
+        font-size: 12px;
+    }
+    p {
+        font-size: 12px;
+        letter-spacing: 0px;
+    }
+}
+
+@media only screen and (max-width: 695px) {
+    .am {
+        background-size: 35px;
+        height: 35px;
+        margin-bottom: 0;
+        width: 45px;
+    }
+    .border {
+        margin-top: 20px;
+    }
+    .center {
+        width: 30px;
+    }
+    .city-logo {
+        width: 70px;
+    }
+    .cool-img {
+        background-size: 14px;
+        width: 22px;
+    }
+    .date {
+        font-size: 12px;
+    }
+    .date-height{
+        height: 29%;
+        width: 100%;
+    }
+    .digi-time {
+        font-size: 14px;
+    }
+    .display-top {
+        font-size: 15px;
+        height: 16px;
+        width: 72px;
+    }
+    .dropdown {
+        font-size: 20px;
+        height: 40px;
+        padding-left: 12px;
+    }
+    .gap {
+        gap: 0px;
+    }
+    .half-height {
+        height: 50%;
+    }
+    .head {
+        height: 200px;
+    }
+    .line-temp-full {
+        height: 48%;
+    }
+    .mid {
+        margin-top: -50px;
+    }
+    .mid-head {
+        font-size: 18px;
+    }
+    .number-box {
+        width: 23px;
+    }
+    .rain-img {
+        background-size: 14px;
+        width: 22px;
+    }
+    .seconds {
+        font-size: 12px;
+    }
+    .sub {
+        padding-bottom: 30px;
+    }
+    .sun-img {
+        background-size: 14px;
+        width: 22px;
+    }
+    .title-font {
+        font-size: 12px;
+    }
+    .value-font {
+        font-size: 16px;
+    }
+    .weather {
+        background-size: 50%;
+        height: 26px;
+    }
+    div {
+        font-size: 10px;
+    }
+    p {
+        font-size: 12px;
+        letter-spacing: 0px;
+    }
+
+}
