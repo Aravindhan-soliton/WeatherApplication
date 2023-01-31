@@ -23,9 +23,19 @@ window.addEventListener("resize", updateScrollArrow);
     updateTopSection(document.getElementById("citychange").value); 
     borderChange("filter0");
 })();
+
+/**
+ *Update the City details in top section.
+ */
 function UpdateCity(){
   updateTopSection(document.getElementById("citychange").value);  
 }
+
+/**
+ *Check for the entered city in the List and Load it,
+ *else call error function to show error message.
+ * @param {string} city
+ */
 function updateTopSection(city){
     var temp=false;
     let x = city.toLowerCase(); 
@@ -47,15 +57,31 @@ function updateTopSection(city){
         errFunction();
     }
 }
+
+/**
+ *Update the city logo image in the top section.
+ * @param {string} city
+ */
 function updateCityImg(city){
     document.getElementById('city-logo').setAttribute("style", "background-image: url('./HTML & CSS/Icons for cities/"+ city +".svg')");
 }
+
+/**
+ *fetch date and time for given city.
+ * @param {object} city
+ * @return {VarDate} date and time.
+ */
 function fetchTime(city){
     return new Date().toLocaleString("en-US", {timeZone: city.timeZone});
 }
+
+/**
+ *Update city time in the top section.
+ * @param {string} city
+ */
 function updateCityTime(city){
     myClock();
-    clearInterval(myInterval);
+    myStopFunction();
     myInterval = setInterval(myClock, 1000);
     function myClock() {      
         let dateId = document.getElementById("date");
@@ -84,9 +110,18 @@ function updateCityTime(city){
         myInterval = setInterval(myClock, 1000);
     } 
 }
+
+/**
+ *function to stop intervals.
+ */
 function myStopFunction() {
     clearInterval(myInterval);
 }
+
+/**
+ *Update temparatures, humidity, precipitation values in the top section.
+ * @param {string} city
+ */
 function updateTempVal(city){
     let tempC = document.getElementById("tempC");
     let tempF = document.getElementById("tempF");
@@ -100,6 +135,11 @@ function updateTempVal(city){
     humidity.innerText = dataList[city].humidity.substring(0, dataList[city].humidity.length-1);
     precipitation.innerText = dataList[city].precipitation.substring(0, dataList[city].precipitation.length-1); 
 }
+
+/**
+ *Update Next five hours weather details in the top section.
+ * @param {string} city
+ */
 function updateNextFiveHours(city){
     document.getElementById("now").innerText="Now";
     document.getElementById("Hour0").innerText = dataList[city].temperature.substring(0, dataList[city].temperature.length-2);
@@ -116,8 +156,14 @@ function updateNextFiveHours(city){
         }
         updateTempImg(document.getElementById('Img'+(index-1)), document.getElementById("Hour"+(index-1)).innerText, 1);
     }
-
 }
+
+/**
+ *Update Next five hours hour values.
+ * @param {id} timeUpdate
+ * @param {object} city
+ * @param {int} hourAdd
+ */
 function updateTime(timeUpdate, city, hourAdd){
     const time = fetchTime(city);
     let hour = (new Date(time).getHours());
@@ -128,6 +174,13 @@ function updateTime(timeUpdate, city, hourAdd){
     hour = hour<10 ? "0"+hour : hour; 
     timeUpdate.innerText = hour+ampm;
 }
+
+/**
+ *Update Next five hours images.
+ * @param {string} img
+ * @param {int} temp
+ * @param {int} val
+ */
 function updateTempImg(img, temp, val){
     if(temp<19){
         img.setAttribute("style", "background-image: url('./HTML & CSS/Weather Icons/rainyIcon.svg')");
@@ -145,22 +198,31 @@ function updateTempImg(img, temp, val){
         img.setAttribute("style", "background-image: url('./HTML & CSS/Weather Icons/sunnyIcon.svg')");
     }
 }
+
+/**
+ *shows err message if the given city is not available.
+ */
 function errFunction(){
     myStopFunction();
-    var errMessage = document.getElementById("err-message");
-    var citychange = document.getElementById("citychange");
-    var errImgArray = document.getElementsByClassName("err-img");
-    var errTextArray = document.getElementsByClassName("err-text");
+    let errMessage = document.getElementById("err-message");
+    let citychange = document.getElementById("citychange");
+    let errImgArray = document.getElementsByClassName("err-img");
+    let errTextArray = document.getElementsByClassName("err-text");
     citychange.setAttribute("style","border-color: red");
     errMessage.innerText = "***Invalid City***";
     errMessage.setAttribute("style","color: red");
-    for (var i = 0; i < errTextArray.length; i++) {
+    for (let i = 0; i < errTextArray.length; i++) {
         errTextArray[i].innerText="NaN";
     }
-    for (var i = 0; i < errImgArray.length; i++) {
+    for (let i = 0; i < errImgArray.length; i++) {
     errImgArray[i].setAttribute("style", "background-image: url('./HTML & CSS/General Images & Icons/warning.svg')");
     }
 }
+
+/**
+ *Sort the mid mection based on weather .
+ * @param {*} filterId
+ */
 function borderChange(filterId){
     for(let index=0; index<3; index++){
         document.getElementById("filter"+index).setAttribute("style","border-bottom-style: none");
@@ -171,6 +233,10 @@ function borderChange(filterId){
     clearInterval(timer);
     timer = setInterval(UpdateCardDateTime, 500);
 }
+
+/**
+ *Create cards in mid section based on the cities in displaylist.
+ */
 function cardUpdate(){
     let index = 0;
     clearInterval(timer);
@@ -199,9 +265,20 @@ function cardUpdate(){
     }
     updateScrollArrow();
 }
+
+/**
+ *Timeout function to sleep the control.
+ * @param {int} ms
+ * @return {*}  closes the function.
+ */
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+/**
+ *function to control smooth scroll in mid section.
+ * @param {*} val
+ */
 async function midSectionScroll(val){
     let temp=7;
     if(val<0)
@@ -215,6 +292,11 @@ async function midSectionScroll(val){
     }
 }
 
+
+/**
+ *Update displayList based on the weather Selected in mid section.
+ * @param {int} sort
+ */
 function displayListUpdate(sort){
     if(sort==2){
         displayList = Object.values(dataList).filter(
@@ -248,6 +330,10 @@ function displayListUpdate(sort){
             displayList.reverse();
     }
 }
+
+/**
+ *function calls functions to Updates Live date and time in displayed cards in mid section.
+ */
 function UpdateCardDateTime(){
     let numBoxValue = document.getElementById("number-box").value;
     let index = 0;
@@ -256,14 +342,19 @@ function UpdateCardDateTime(){
         updateCardDate(displayList[city], "card-date"+index);
         updateCardTime(displayList[city], "card-time"+index);
         }
-        catch{
-            console.log("err ",numBoxValue," ",displayList[city], "card-date"+index );
+        catch{          
         }
         if(index>=parseInt(numBoxValue)-1)
         break;
         index++;
     }
 }
+
+/**
+ *Updates Live time in displayed cards in mid section.
+ * @param {object} city
+ * @param {id} timeId
+ */
 function updateCardTime(city, timeId){
     let dateTime = fetchTime(city);
     let hour = (new Date(dateTime).getHours());
@@ -275,11 +366,21 @@ function updateCardTime(city, timeId){
     min = min<10 ? "0"+min : min; 
     document.getElementById(timeId).innerText=   hour+":"+min+" "+ampm;
 }
+
+/**
+ *Updates Live date in displayed cards in mid section.
+ * @param {object} city
+ * @param {id} dateId
+ */
 function updateCardDate(city, dateId){
     let dateTime = fetchTime(city);
     const date = new Date(dateTime).getDate();
     document.getElementById(dateId).innerText=(date<10 ? "0"+date : date) +"-"+ new Date().toLocaleString( "en-US",{month:'short'}, {timeZone: dateTime})+ "-"+new Date(dateTime).getFullYear();
 }
+
+/**
+ *Updates Visibility of scroll arrows and alignment of cards in mid section.
+ */
 function updateScrollArrow(){
     let divWidth = document.getElementById("card-div").clientWidth;
     let displayCount = displayList.length;
