@@ -1,8 +1,13 @@
 let myInterval;
 let dataList;
 let displayList;
+let blockList;
 let timer;
+let blockTimer;
+let continentSwap = 0;
+let temperatureSwap = 0;
 const cityId = document.querySelector('#city0');
+const blockId = document.querySelector('#block0');
 document.getElementById("citychange").addEventListener("change", UpdateCity);
 document.getElementById("citychange").addEventListener("change", UpdateCity);
 document.getElementById("filter0").addEventListener("click",() => borderChange("filter0"));
@@ -12,9 +17,14 @@ document.getElementById("left-button").addEventListener("click", () => midSectio
 document.getElementById("right-button").addEventListener("click", () => midSectionScroll(2.9));
 document.getElementById("number-box").addEventListener("change", () => cardUpdate());
 window.addEventListener("resize", updateScrollArrow);
+document.getElementById("Continent-sort").addEventListener("click",() => UpdateBlockSort(2));
+document.getElementById("Temperature-sort").addEventListener("click",() => UpdateBlockSort(1));
+document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
 (function (){ 
     dataList = cityData;
     displayList = cityData;
+    blockList = Object.values(dataList);
     var city=document.getElementById("city");
     for ( let cityDetails in dataList) {
         var option = document.createElement("OPTION");
@@ -22,6 +32,10 @@ window.addEventListener("resize", updateScrollArrow);
         city.appendChild(option);}
     updateTopSection(document.getElementById("citychange").value); 
     borderChange("filter0");
+    updateBlocks();
+    UpdateBlockSort(0);
+    clearInterval(blockTimer);
+    blockTimer = setInterval(UpdateBlockTime, 500);
 })();
 
 /**
@@ -340,7 +354,7 @@ function UpdateCardDateTime(){
     for(let city in displayList){
         try{
         updateCardDate(displayList[city], "card-date"+index);
-        updateCardTime(displayList[city], "card-time"+index);
+        document.getElementById("card-time"+index).innerText=   updateCardTime(displayList[city], "card-time"+index);
         }
         catch{          
         }
@@ -354,8 +368,10 @@ function UpdateCardDateTime(){
  *Updates Live time in displayed cards in mid section.
  * @param {object} city
  * @param {id} timeId
+ * @return {*} time
  */
-function updateCardTime(city, timeId){
+
+function updateCardTime(city){
     let dateTime = fetchTime(city);
     let hour = (new Date(dateTime).getHours());
     let min = new Date(dateTime).getMinutes();
@@ -364,7 +380,7 @@ function updateCardTime(city, timeId){
     hour = hour==0 ? 12 : hour;
     hour = hour<10 ? "0"+hour : hour; 
     min = min<10 ? "0"+min : min; 
-    document.getElementById(timeId).innerText=   hour+":"+min+" "+ampm;
+    return hour+":"+min+" "+ampm;
 }
 
 /**
@@ -397,3 +413,27 @@ function updateScrollArrow(){
         document.getElementById("arrow-div2").setAttribute("style","display:none");
     }
 }
+
+/**
+ *Update bottom section by creating blocks based on the city list.
+ */
+function updateBlocks(){
+    let index = 0;
+    clearInterval(blockTimer);
+    document.getElementById("blocks").replaceChildren();
+    for(let city in blockList){
+        let clone = blockId.cloneNode(true);
+        clone.id='block'+index;
+        document.getElementById("blocks").appendChild(clone);
+        let timeZone = blockList[city].timeZone;
+        clone.querySelector("#city-time").id="city-time"+index;
+        clone.querySelector("#continent-name").innerText=timeZone.substring(0,timeZone.indexOf('/'));
+        clone.querySelector("#block-temp").innerText=blockList[city].temperature;
+        clone.querySelector("#block-humidity").innerText=blockList[city].humidity;
+        document.getElementById("city-time"+index).innerText=blockList[city].cityName+", "+updateCardTime(blockList[city]);
+        if(index==11)
+            break;
+        index++;
+    }
+}
+
