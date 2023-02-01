@@ -526,6 +526,7 @@ function updateBlocks(){
         index++;
     }
 }
+
 /**
  *Update block time for every minute.
  */
@@ -537,4 +538,74 @@ function updateBlocks(){
             break;
         index++;
     }
+}
+
+/**
+ *Update bottom section blocks based on continent and temperature filters.
+ * @param {int} val
+ */
+ function UpdateBlockSort(val){
+    UpdateBlockSortTemperature();
+    UpdateBlockSortContinent();
+    if(val==1){
+        if(temperatureSwap==0){
+            document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')");
+            temperatureSwap=1;
+        }
+        else{
+            document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+            temperatureSwap=0;
+        }
+    }
+    else if(val==2){
+        if(continentSwap==0){
+            document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')");
+            continentSwap=1;
+        }
+        else{
+            document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+            continentSwap=0;
+        }
+    }
+    if(continentSwap==1){
+        if(temperatureSwap==0){
+        UpdateBlockSortTemperature();
+        blockList.reverse();
+        }
+        UpdateBlockSortContinent();
+        blockList.reverse();
+    }
+    else if(temperatureSwap==1 && continentSwap==0){
+        blockList.reverse();
+        UpdateBlockSortContinent();
+    }
+    updateBlocks();
+    blockTimer = setInterval(UpdateBlockTime, 500);
+}
+
+/**
+ *Sort the block list based on continents
+ */
+function UpdateBlockSortContinent(){
+    blockList.sort(
+        function (a, b) {
+            if (a.timeZone.split("/")[0] < b.timeZone.split("/")[0]) {
+              return -1;
+            }
+            if (a.timeZone.split("/")[0] > b.timeZone.split("/")[0]) {
+              return 1;
+            }
+            return 0;
+    });
+    updateBlocks();
+}
+
+/**
+ *Sort the block list based on Temperature.
+ */
+function UpdateBlockSortTemperature(){
+    blockList.sort(
+        (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
+    );
+    updateBlocks();
 }
