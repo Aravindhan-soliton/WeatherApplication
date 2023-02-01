@@ -526,4 +526,15 @@ function updateBlocks(){
         index++;
     }
 }
-
+/**
+ *Update block time for every minute.
+ */
+ function UpdateBlockTime(){
+    let index = 0;
+    for(let city in blockList){
+        document.getElementById("city-time"+index).innerText=blockList[city].cityName+", "+updateCardTime(blockList[city]);
+        if(index==11)
+            break;
+        index++;
+    }
+}
