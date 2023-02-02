@@ -15,6 +15,11 @@
 	justify-content: center;
 	width: 50px;
 }
+.arrow:hover{
+	height: 45px;
+    width: 45px;
+    transition: 200ms;
+} 
 .arrow-center {
 	display: flex;
 	justify-content: center;
@@ -52,6 +57,10 @@
 	height: 30px;
 	width: 30px;
 }
+.block-humidity-value{
+    font-size:20px;
+
+}
 .block-left {
 	justify-content: space-between;
 	width: 100%;
@@ -79,8 +88,6 @@
 	border-width: 1px;
 	color: #C1C1C6;
 	height: 70%;
-
-
 }
 .bottom {
 	display: flex;
@@ -91,13 +98,16 @@
 	background-color: #181818;
 	display: flex;
 	height: 250px;
-	margin: 10px;
-	margin-bottom: 15px;
-    box-shadow: 5px 5px 5px 	black;
+    margin: 10px;
+    box-shadow: 5px 5px 5px black;
 }
 .card:hover{
 	background-color: #161616;
     box-shadow: 10px 10px 5px 	black;
+    transition: 400ms;
+    height: 255px;
+    margin: 5px;
+    margin-right: 15px;
 }
 .card-data {
 	margin: 20px;
@@ -115,6 +125,7 @@
 .card-img:hover{
     background-position-y: 70px;
     background-size: 70%;
+    transition: 400ms;
 }
 
 .card-temp {
@@ -122,7 +133,9 @@
 	display: flex;
 	flex-direction: row;
 	height: 100%;
+    justify-content: flex-end;
 	width: 40%;
+
 }
 .card-temp-img {
 	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
@@ -163,7 +176,7 @@
 	height: 100%;
     display: flex;
     flex-direction:row-reverse;
-    width: 10%;
+    width: 12%;
 }
 .city-name {
 	font-size: 20px;
@@ -200,6 +213,10 @@
     border-bottom-color: #00c0f1;
     cursor: pointer;
 }
+.cool-img:hover{
+    background-size: 40px;
+    transition: 200ms;
+}
 .date {
 	font-size: 22px;
 	font-weight: 400;
@@ -231,6 +248,10 @@
 	width: 30px;
     cursor: pointer;
 }
+.sort-arrow:hover{
+    height: 37px;
+    transition: 200ms;
+}
 .down-height {
 	height: 50%;
 	width: 100%;
@@ -248,6 +269,10 @@
 	width: 80%;
     align-self: center;
     outline: transparent;
+}
+.dropdown:hover{
+	font-size: 210%;
+    transition: 120ms;
 }
 .err-message{
     width: 90%;
@@ -396,6 +421,10 @@
     border-bottom-color: #00c0f1;
     cursor: pointer;
 }
+.rain-img:hover{
+    background-size: 40px;
+    transition: 200ms;
+}
 .row {
 	align-items: end;
 	flex-direction: row;
@@ -446,6 +475,10 @@
 	width: 50px;
     border-bottom-color: #00c0f1;
     cursor: pointer;
+}
+.sun-img:hover{
+    background-size: 40px;
+    transition: 200ms;
 }
 .temp-full {
 	display: flex;
@@ -525,6 +558,10 @@ p {
         height: 35px;
         width: 40px;
     }
+    .cool-img:hover{
+        background-size: 32px;
+        transition: 200ms;
+    }
     .date {
         font-size: 22px;
     }
@@ -569,6 +606,10 @@ p {
         height: 35px;
         width: 40px;
     }
+    .rain-img:hover{
+        background-size: 32px;
+        transition: 200ms;
+    }
     .seconds {
         font-size: 22px;
     }
@@ -579,6 +620,10 @@ p {
         background-size: 28px;
         height: 35px;
         width: 40px;
+    }
+    .sun-img:hover{
+        background-size: 32px;
+        transition: 200ms;
     }
     .time {
         gap: 19px;
@@ -619,6 +664,10 @@ p {
         background-size: 25px;
         width: 35px;
     }
+    .cool-img:hover{
+        background-size: 28px;
+        transition: 200ms;
+    }
     .date {
         font-size: 18px;
     }
@@ -654,6 +703,10 @@ p {
         background-size: 25px;
         width: 35px;
     }
+    .rain-img:hover{
+        background-size: 28px;
+        transition: 200ms;
+    }
     .seconds {
         font-size: 18px;
     }
@@ -663,6 +716,10 @@ p {
     .sun-img {
         background-size: 25px;
         width: 35px;
+    }
+    .sun-img:hover{
+        background-size: 28px;
+        transition: 200ms;
     }
     .time {
         width: 30%;
@@ -709,6 +766,10 @@ p {
         background-size: 24px;
         width: 30px;
     }
+    .cool-img:hover{
+        background-size: 26px;
+        transition: 200ms;
+    }
     .date {
         font-size: 16px;
     }
@@ -734,6 +795,10 @@ p {
         background-size: 24px;
         width: 30px;
     }
+    .rain-img:hover{
+        background-size: 26px;
+        transition: 200ms;
+    }
     .seconds {
         font-size: 16px;
     }
@@ -743,6 +808,10 @@ p {
     .sun-img {
         background-size: 23px;
         width: 30px;
+    }
+    .sun-img:hover{
+        background-size: 25px;
+        transition: 200ms;
     }
     .title-font {
         font-size: 14px;
@@ -779,10 +848,15 @@ p {
     }
     .city-logo {
         width: 71px;
+        background-size: 100%;
     }
     .cool-img {
         background-size: 18px;
         width: 25px;
+    }
+    .cool-img:hover{
+        background-size: 20px;
+        transition: 200ms;
     }
     .date {
         font-size: 16px;
@@ -810,6 +884,10 @@ p {
         background-size: 18px;
         width: 25px;
     }
+    .rain-img:hover{
+        background-size: 20px;
+        transition: 200ms;
+    }
     .seconds {
         font-size: 16px;
     }
@@ -819,6 +897,10 @@ p {
     .sun-img {
         background-size: 18px;
         width: 25px;
+    }
+    .sun-img:hover{
+        background-size: 20px;
+        transition: 200ms;
     }
     .temp-full {
         width: 25%;
@@ -864,10 +946,15 @@ p {
         width: 60%;
     }
     .card-img {
-        background-position-y: 95px;
-        background-size: 80%;
+        background-position-y: 120px;
+        background-size: 60%;
         height: 100%;
         width: 225px;
+    }
+    .card-img:hover{
+        background-position-y: 100px;
+        background-size: 70%;
+        transition: 400ms;
     }
     .center {
         width: 30px;
@@ -878,6 +965,10 @@ p {
     .cool-img {
         background-size: 16px;
         width: 22px;
+    }
+    .cool-img:hover{
+        background-size: 18px;
+        transition: 200ms;
     }
     .date {
         font-size: 12px;
@@ -925,6 +1016,10 @@ p {
         background-size: 16px;
         width: 22px;
     }
+    .rain-img:hover{
+        background-size: 18px;
+        transition: 200ms;
+    }
     .seconds {
       font-size: 12px;
     }
@@ -934,6 +1029,10 @@ p {
     .sun-img {
         background-size: 16px;
         width: 22px;
+    }
+    .sun-img:hover{
+        background-size: 18px;
+        transition: 200ms;
     }
     .title-font {
         font-size: 12px;

@@ -9,30 +9,18 @@ let temperatureSwap = 0;
 const cityId = document.querySelector('#city0');
 const blockId = document.querySelector('#block0');
 document.getElementById("citychange").addEventListener("change", UpdateCity);
-document.getElementById("citychange").addEventListener("change", UpdateCity);
-document
-  .getElementById("filter0")
-  .addEventListener("click", () => borderChange("filter0"));
-document
-  .getElementById("filter1")
-  .addEventListener("click", () => borderChange("filter1"));
-document
-  .getElementById("filter2")
-  .addEventListener("click", () => borderChange("filter2"));
-document
-  .getElementById("left-button")
-  .addEventListener("click", () => midSectionScroll(-2.9));
-document
-  .getElementById("right-button")
-  .addEventListener("click", () => midSectionScroll(2.9));
-document
-  .getElementById("number-box")
-  .addEventListener("change", () => cardUpdate());
+document.getElementById("filter0").addEventListener("click",() => borderChange("filter0"));
+document.getElementById("filter1").addEventListener("click", () => borderChange("filter1"));
+document.getElementById("filter2").addEventListener("click", () => borderChange("filter2"));
+document.getElementById("left-button").addEventListener("click", () => midSectionScroll(-2.9));
+document.getElementById("right-button").addEventListener("click", () => midSectionScroll(2.9));
+document.getElementById("number-box").addEventListener("change", () => cardUpdate());
 window.addEventListener("resize", updateScrollArrow);
 document.getElementById("Continent-sort").addEventListener("click",() => UpdateBlockSort(2));
 document.getElementById("Temperature-sort").addEventListener("click",() => UpdateBlockSort(1));
 document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
 document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+
 (function (){ 
     dataList = cityData;
     displayList = cityData;
@@ -53,8 +41,8 @@ document.getElementById("Continent-sort").setAttribute("style","background-image
 /**
  *Update the City details in top section.
  */
-function UpdateCity() {
-  updateTopSection(document.getElementById("citychange").value);
+function UpdateCity(){
+  updateTopSection(this.value);  
 }
 
 /**
@@ -484,24 +472,21 @@ function updateCardDate(city, dateId) {
 /**
  *Updates Visibility of scroll arrows and alignment of cards in mid section.
  */
-function updateScrollArrow() {
-  let divWidth = document.getElementById("card-div").clientWidth;
-  let displayCount = displayList.length;
-  let numberBoxCount = document.getElementById("number-box").value;
-  let count = displayCount < numberBoxCount ? displayCount : numberBoxCount;
-  if (divWidth < count * 280 + 20) {
-    document
-      .getElementById("mid-container")
-      .setAttribute("style", "justify-content: none");
-    document.getElementById("arrow-div1").setAttribute("style", "display:flex");
-    document.getElementById("arrow-div2").setAttribute("style", "display:flex");
-  } else {
-    document
-      .getElementById("mid-container")
-      .setAttribute("style", "justify-content: center");
-    document.getElementById("arrow-div1").setAttribute("style", "display:none");
-    document.getElementById("arrow-div2").setAttribute("style", "display:none");
-  }
+function updateScrollArrow(){
+    let divWidth = document.getElementById("card-div").clientWidth;
+    let displayCount = displayList.length;
+    let numberBoxCount = document.getElementById("number-box").value;
+    let count = displayCount<numberBoxCount? displayCount:numberBoxCount;
+    if(divWidth < count*280){
+        document.getElementById("mid-container").setAttribute("style","justify-content: none");
+        document.getElementById("arrow-div1").setAttribute("style","display:flex");
+        document.getElementById("arrow-div2").setAttribute("style","display:flex");
+    }
+    else{
+        document.getElementById("mid-container").setAttribute("style","justify-content: center");
+        document.getElementById("arrow-div1").setAttribute("style","display:none");
+        document.getElementById("arrow-div2").setAttribute("style","display:none");
+    }
 }
 
 /**
