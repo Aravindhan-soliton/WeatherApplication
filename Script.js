@@ -9,7 +9,6 @@ let temperatureSwap = 0;
 const cityId = document.querySelector('#city0');
 const blockId = document.querySelector('#block0');
 document.getElementById("citychange").addEventListener("change", UpdateCity);
-document.getElementById("citychange").addEventListener("change", UpdateCity);
 document.getElementById("filter0").addEventListener("click",() => borderChange("filter0"));
 document.getElementById("filter1").addEventListener("click", () => borderChange("filter1"));
 document.getElementById("filter2").addEventListener("click", () => borderChange("filter2"));
@@ -21,6 +20,7 @@ document.getElementById("Continent-sort").addEventListener("click",() => UpdateB
 document.getElementById("Temperature-sort").addEventListener("click",() => UpdateBlockSort(1));
 document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
 document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+
 (function (){ 
     dataList = cityData;
     displayList = cityData;
@@ -42,7 +42,7 @@ document.getElementById("Continent-sort").setAttribute("style","background-image
  *Update the City details in top section.
  */
 function UpdateCity(){
-  updateTopSection(document.getElementById("citychange").value);  
+  updateTopSection(this.value);  
 }
 
 /**
@@ -402,7 +402,7 @@ function updateScrollArrow(){
     let displayCount = displayList.length;
     let numberBoxCount = document.getElementById("number-box").value;
     let count = displayCount<numberBoxCount? displayCount:numberBoxCount;
-    if(divWidth < count*280+20){
+    if(divWidth < count*280){
         document.getElementById("mid-container").setAttribute("style","justify-content: none");
         document.getElementById("arrow-div1").setAttribute("style","display:flex");
         document.getElementById("arrow-div2").setAttribute("style","display:flex");
