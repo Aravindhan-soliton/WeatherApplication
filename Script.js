@@ -1,7 +1,7 @@
 let cityObj;
-let myInterval;
-let footSectionObj;
 let midSectionObj;
+let footSectionObj;
+let myInterval;
 let dataList;
 let displayList;
 let blockList;
@@ -50,6 +50,9 @@ document
     "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
   );
 
+/**
+ *prototype function for top section.
+ */
 let cityFunction = function () {};
 // Set values operation performed for all the needed fieldscity
 cityFunction.prototype.setCityName = function (cityName) {
@@ -98,8 +101,12 @@ cityFunction.prototype.getNextFiveHrs = function (index) {
 cityFunction.prototype.fetchTime = function (cityTimeZone) {
   return new Date().toLocaleString("en-US", { timeZone: cityTimeZone });
 };
+
+/**
+ *prototype function for mid section.
+ */
 let midSection = function () {};
-midSection.__proto__ = cityFunction;
+midSection.prototype = new cityFunction();
 /**
  *Updates Live time in displayed cards in mid section.
  * @param {object} city
@@ -107,7 +114,7 @@ midSection.__proto__ = cityFunction;
  * @return {*} time
  */
 midSection.prototype.updateCardTime = function (city) {
-  let dateTime = cityObj.fetchTime(city.timeZone);
+  let dateTime = cityFunction.prototype.fetchTime(city.timeZone);
   let hour = new Date(dateTime).getHours();
   let min = new Date(dateTime).getMinutes();
   const ampm = hour < 12 ? "AM" : "PM";
@@ -117,6 +124,13 @@ midSection.prototype.updateCardTime = function (city) {
   min = min < 10 ? "0" + min : min;
   return hour + ":" + min + " " + ampm;
 };
+
+/**
+ *prototype function for foot section.
+ */
+let footSection = function() {};
+footSection.prototype = new midSection();
+
 /**
  *shows err message if the given city is not available.
  */
@@ -363,7 +377,6 @@ function updateTempImg(img, temp, val) {
  */
 function borderChange(filterId) {
   midSectionObj = new midSection();
-  console.log(midSectionObj);
   for (let index = 0; index < 3; index++) {
     document
       .getElementById("filter" + index)
@@ -510,7 +523,7 @@ function UpdateCardDateTime() {
  * @param {id} dateId
  */
 function updateCardDate(city, dateId) {
-  let dateTime = cityObj.fetchTime(city.timeZone);
+  let dateTime = midSectionObj.fetchTime(city.timeZone);
   const date = new Date(dateTime).getDate();
   document.getElementById(dateId).innerText =
     (date < 10 ? "0" + date : date) +
@@ -547,13 +560,11 @@ function updateScrollArrow() {
   }
 }
 
-function footSection() {}
 /**
  *Update bottom section by creating blocks based on the city list.
  */
 function updateBlocks() {
   let index = 0;
-  footSection.prototype = new cityFunction();
   footSectionObj = new footSection();
   clearInterval(blockTimer);
   document.getElementById("blocks").replaceChildren();
@@ -572,7 +583,7 @@ function updateBlocks() {
     document.getElementById("city-time" + index).innerText =
       blockList[city].cityName +
       ", " +
-      midSectionObj.updateCardTime(blockList[city]);
+      footSectionObj.updateCardTime(blockList[city]);
     if (index == 11) break;
     index++;
   }
@@ -587,7 +598,7 @@ function UpdateBlockTime() {
     document.getElementById("city-time" + index).innerText =
       blockList[city].cityName +
       ", " +
-      midSectionObj.updateCardTime(blockList[city]);
+      footSectionObj.updateCardTime(blockList[city]);
     if (index == 11) break;
     index++;
   }
