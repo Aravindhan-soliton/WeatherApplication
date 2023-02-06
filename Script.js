@@ -49,87 +49,80 @@ document
     "style",
     "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
   );
-
 /**
  *prototype function for top section.
  */
-let cityFunction = function () {};
-// Set values operation performed for all the needed fieldscity
-cityFunction.prototype.setCityName = function (cityName) {
-  this.cityName = cityName;
-};
-cityFunction.prototype.setDateAndTime = function (dateAndTime) {
-  this.dateAndTime = dateAndTime;
-};
-cityFunction.prototype.setTimeZone = function (timeZone) {
-  this.timeZone = timeZone;
-};
-cityFunction.prototype.setTemperature = function (temperature) {
-  this.temperature = temperature;
-};
-cityFunction.prototype.setHumidity = function (humidity) {
-  this.humidity = humidity;
-};
-cityFunction.prototype.setPrecipitation = function (precipitation) {
-  this.precipitation = precipitation;
-};
-cityFunction.prototype.setNextFiveHrs = function (nextFiveHrs) {
-  this.nextFiveHrs = nextFiveHrs;
-};
-// Get values operation performed for all the needed fieldscity
-cityFunction.prototype.getCityName = function () {
-  return this.cityName;
-};
-cityFunction.prototype.getDateAndTime = function () {
-  return this.dateAndTime;
-};
-cityFunction.prototype.getTimeZone = function () {
-  return this.timeZone;
-};
-cityFunction.prototype.getTemperature = function () {
-  return this.temperature;
-};
-cityFunction.prototype.getHumidity = function () {
-  return this.humidity;
-};
-cityFunction.prototype.getPrecipitation = function () {
-  return this.precipitation;
-};
-cityFunction.prototype.getNextFiveHrs = function (index) {
-  return this.nextFiveHrs[index];
-};
-cityFunction.prototype.fetchTime = function (cityTimeZone) {
-  return new Date().toLocaleString("en-US", { timeZone: cityTimeZone });
-};
+class cityFunction {
+  constructor(cityName,dateAndTime,temperature,humidity,nextFiveHrs,timeZone,precipitation) {
+    this.cityName = cityName;
+    this.dateAndTime = dateAndTime;
+    this.timeZone = timeZone;
+    this.temperature = temperature;
+    this.humidity = humidity;
+    this.precipitation = precipitation;
+    this.nextFiveHrs = nextFiveHrs;
+   }
+  // Get values operation performed for all the needed fieldscity
+  getCityName() {
+    return this.cityName;
+  }
+  getDateAndTime() {
+    return this.dateAndTime;
+  }
+  getTimeZone() {
+    return this.timeZone;
+  }
+  getTemperature() {
+    return this.temperature;
+  }
+  getHumidity() {
+    return this.humidity;
+  }
+  getPrecipitation() {
+    return this.precipitation;
+  }
+  getNextFiveHrs(index) {
+    return this.nextFiveHrs[index];
+  }
+  fetchTime(cityTimeZone) {
+    return new Date().toLocaleString("en-US", { timeZone: cityTimeZone });
+  }
+}
 
 /**
  *prototype function for mid section.
  */
-let midSection = function () {};
-midSection.prototype = new cityFunction();
-/**
- *Updates Live time in displayed cards in mid section.
- * @param {object} city
- * @param {id} timeId
- * @return {*} time
- */
-midSection.prototype.updateCardTime = function (city) {
-  let dateTime = cityFunction.prototype.fetchTime(city.timeZone);
-  let hour = new Date(dateTime).getHours();
-  let min = new Date(dateTime).getMinutes();
-  const ampm = hour < 12 ? "AM" : "PM";
-  hour = hour % 12;
-  hour = hour == 0 ? 12 : hour;
-  hour = hour < 10 ? "0" + hour : hour;
-  min = min < 10 ? "0" + min : min;
-  return hour + ":" + min + " " + ampm;
-};
+class midSection extends cityFunction{
+  constructor() {
+    super();
+   }
+  /**
+   *Updates Live time in displayed cards in mid section.
+   * @param {object} city
+   * @param {id} timeId
+   * @return {*} time
+   */
+  updateCardTime(city) {
+    let dateTime = cityFunction.prototype.fetchTime(city.timeZone);
+    let hour = new Date(dateTime).getHours();
+    let min = new Date(dateTime).getMinutes();
+    const ampm = hour < 12 ? "AM" : "PM";
+    hour = hour % 12;
+    hour = hour == 0 ? 12 : hour;
+    hour = hour < 10 ? "0" + hour : hour;
+    min = min < 10 ? "0" + min : min;
+    return hour + ":" + min + " " + ampm;
+  }
+}
 
 /**
  *prototype function for foot section.
  */
-let footSection = function() {};
-footSection.prototype = new midSection();
+class footSection extends midSection {
+  constructor() {
+    super();
+  }
+}
 
 /**
  *shows err message if the given city is not available.
@@ -173,14 +166,7 @@ function updateTopSection(city) {
     if (cityX == cit) temp = true;
   }
   if (temp) {
-    cityObj = new cityFunction();
-    cityObj.setCityName(dataList[cityX].cityName);
-    cityObj.setDateAndTime(dataList[cityX].dateAndTime);
-    cityObj.setTemperature(dataList[cityX].temperature);
-    cityObj.setHumidity(dataList[cityX].humidity);
-    cityObj.setNextFiveHrs(dataList[cityX].nextFiveHrs);
-    cityObj.setTimeZone(dataList[cityX].timeZone);
-    cityObj.setPrecipitation(dataList[cityX].precipitation);
+    cityObj = new cityFunction(dataList[cityX].cityName,dataList[cityX].dateAndTime,dataList[cityX].temperature,dataList[cityX].humidity,dataList[cityX].nextFiveHrs,dataList[cityX].timeZone,dataList[cityX].precipitation);
     var citychange = document.getElementById("citychange");
     var errMessage = document.getElementById("err-message");
     citychange.setAttribute("style", "border-color: transparent");
@@ -388,12 +374,12 @@ function borderChange(filterId) {
   displayListUpdate(filterId.substring(filterId.length - 1, filterId.length));
   cardUpdate();
   clearInterval(timer);
-  timer = setInterval(UpdateCardDateTime, 500);
+  timer = setInterval(UpdateCardDateTime, 100);
 }
 function numberBoxUpdate(){
   cardUpdate();
   clearInterval(timer);
-  timer = setInterval(UpdateCardDateTime, 500);
+  timer = setInterval(UpdateCardDateTime, 100);
 }
 
 /**
