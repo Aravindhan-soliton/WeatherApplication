@@ -29,7 +29,7 @@ document
   .addEventListener("click", () => midSectionScroll(2.9));
 document
   .getElementById("number-box")
-  .addEventListener("change", () => cardUpdate());
+  .addEventListener("change", () => numberBoxUpdate());
 window.addEventListener("resize", updateScrollArrow);
 document
   .getElementById("Continent-sort")
@@ -374,6 +374,11 @@ function borderChange(filterId) {
     .getElementById(filterId)
     .setAttribute("style", "border-bottom-style: solid");
   displayListUpdate(filterId.substring(filterId.length - 1, filterId.length));
+  cardUpdate();
+  clearInterval(timer);
+  timer = setInterval(UpdateCardDateTime, 500);
+}
+function numberBoxUpdate(){
   cardUpdate();
   clearInterval(timer);
   timer = setInterval(UpdateCardDateTime, 500);
