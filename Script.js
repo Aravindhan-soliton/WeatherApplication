@@ -53,15 +53,15 @@ document
  *prototype function for top section.
  */
 class cityFunction {
-  constructor(cityName,dateAndTime,temperature,humidity,nextFiveHrs,timeZone,precipitation) {
-    this.cityName = cityName;
-    this.dateAndTime = dateAndTime;
-    this.timeZone = timeZone;
-    this.temperature = temperature;
-    this.humidity = humidity;
-    this.precipitation = precipitation;
-    this.nextFiveHrs = nextFiveHrs;
-   }
+  constructor(city) {
+    this.cityName = city.cityName;
+    this.dateAndTime = city.dateAndTime;
+    this.timeZone = city.timeZone;
+    this.temperature = city.temperature;
+    this.humidity = city.humidity;
+    this.precipitation = city.precipitation;
+    this.nextFiveHrs = city.nextFiveHrs;
+  }
   // Get values operation performed for all the needed fieldscity
   getCityName() {
     return this.cityName;
@@ -92,10 +92,10 @@ class cityFunction {
 /**
  *prototype function for mid section.
  */
-class midSection extends cityFunction{
-  constructor() {
-    super();
-   }
+class midSection extends cityFunction {
+  constructor(city) {
+    super(city);
+  }
   /**
    *Updates Live time in displayed cards in mid section.
    * @param {object} city
@@ -119,8 +119,8 @@ class midSection extends cityFunction{
  *prototype function for foot section.
  */
 class footSection extends midSection {
-  constructor() {
-    super();
+  constructor(city) {
+    super(city);
   }
 }
 
@@ -166,7 +166,7 @@ function updateTopSection(city) {
     if (cityX == cit) temp = true;
   }
   if (temp) {
-    cityObj = new cityFunction(dataList[cityX].cityName,dataList[cityX].dateAndTime,dataList[cityX].temperature,dataList[cityX].humidity,dataList[cityX].nextFiveHrs,dataList[cityX].timeZone,dataList[cityX].precipitation);
+    cityObj = new cityFunction(dataList[cityX]);
     var citychange = document.getElementById("citychange");
     var errMessage = document.getElementById("err-message");
     citychange.setAttribute("style", "border-color: transparent");
@@ -362,7 +362,6 @@ function updateTempImg(img, temp, val) {
  * @param {*} filterId
  */
 function borderChange(filterId) {
-  midSectionObj = new midSection();
   for (let index = 0; index < 3; index++) {
     document
       .getElementById("filter" + index)
@@ -376,7 +375,7 @@ function borderChange(filterId) {
   clearInterval(timer);
   timer = setInterval(UpdateCardDateTime, 100);
 }
-function numberBoxUpdate(){
+function numberBoxUpdate() {
   cardUpdate();
   clearInterval(timer);
   timer = setInterval(UpdateCardDateTime, 100);
@@ -390,30 +389,31 @@ function cardUpdate() {
   clearInterval(timer);
   document.getElementById("mid-container").replaceChildren();
   for (let city in displayList) {
+    midSectionObj = new midSection(displayList[city]);
     let clone = cityId.cloneNode(true);
     clone.id = "city" + index;
     document.getElementById("mid-container").appendChild(clone);
-    clone.querySelector("#city-name").innerText = displayList[city].cityName;
+    clone.querySelector("#city-name").innerText = midSectionObj.getCityName();
     clone
       .querySelector("#card-img")
       .setAttribute(
         "style",
         "background-image: url('./HTML & CSS/Icons for cities/" +
-          displayList[city].cityName.toLowerCase() +
+          midSectionObj.getCityName().toLowerCase() +
           ".svg')"
       );
     clone.querySelector("#card-humidity").innerText =
-      displayList[city].humidity;
+      midSectionObj.getHumidity();
     clone.querySelector("#card-precipitation").innerText =
-      displayList[city].precipitation;
+      midSectionObj.getPrecipitation();
     clone.querySelector("#card-date").id = "card-date" + index;
     clone.querySelector("#card-time").id = "card-time" + index;
     updateCardDate(
-      displayList[city].cityName.toLowerCase(),
+      midSectionObj.getCityName().toLowerCase(),
       "card-date" + index
     );
-    midSectionObj.updateCardTime(displayList[city].cityName.toLowerCase());
-    let temperature = displayList[city].temperature;
+    midSectionObj.updateCardTime(midSectionObj.getCityName().toLowerCase());
+    let temperature = midSectionObj.getTemperature();
     clone.querySelector("#card-temp").innerText = temperature;
     let tempImg = clone.querySelector("#card-temp-img");
     temperature = temperature.substring(0, temperature.length - 2);
@@ -551,24 +551,26 @@ function updateScrollArrow() {
  */
 function updateBlocks() {
   let index = 0;
-  footSectionObj = new footSection();
   clearInterval(blockTimer);
   document.getElementById("blocks").replaceChildren();
   for (let city in blockList) {
+    footSectionObj = new footSection(blockList[city]);
     let clone = blockId.cloneNode(true);
     clone.id = "block" + index;
     document.getElementById("blocks").appendChild(clone);
-    let timeZone = blockList[city].timeZone;
+    let timeZone = footSectionObj.getTimeZone();
     clone.querySelector("#city-time").id = "city-time" + index;
     clone.querySelector("#continent-name").innerText = timeZone.substring(
       0,
       timeZone.indexOf("/")
     );
-    clone.querySelector("#block-temp").innerText = blockList[city].temperature;
-    clone.querySelector("#block-humidity").innerText = blockList[city].humidity;
+    clone.querySelector("#block-temp").innerText =
+      footSectionObj.getTemperature();
+    clone.querySelector("#block-humidity").innerText =
+      footSectionObj.getHumidity();
+      clone.querySelector("#city-name").innerText =
+      footSectionObj.getCityName()+",";
     document.getElementById("city-time" + index).innerText =
-      blockList[city].cityName +
-      ", " +
       footSectionObj.updateCardTime(blockList[city]);
     if (index == 11) break;
     index++;
@@ -582,8 +584,6 @@ function UpdateBlockTime() {
   let index = 0;
   for (let city in blockList) {
     document.getElementById("city-time" + index).innerText =
-      blockList[city].cityName +
-      ", " +
       footSectionObj.updateCardTime(blockList[city]);
     if (index == 11) break;
     index++;
