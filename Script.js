@@ -9,6 +9,8 @@ let timer;
 let blockTimer;
 let continentSwap = 0;
 let temperatureSwap = 0;
+let totalDetails;
+let nextFiveHrs;
 const cityId = document.querySelector("#city0");
 const blockId = document.querySelector("#block0");
 document.getElementById("citychange").addEventListener("change", UpdateCity);
@@ -60,7 +62,7 @@ class cityFunction {
     this.temperature = city.temperature;
     this.humidity = city.humidity;
     this.precipitation = city.precipitation;
-    this.nextFiveHrs = city.nextFiveHrs;
+    // this.nextFiveHrs = city.nextFiveHrs;
   }
   // Get values operation performed for all the needed fieldscity
   getCityName() {
@@ -82,7 +84,7 @@ class cityFunction {
     return this.precipitation;
   }
   getNextFiveHrs(index) {
-    return this.nextFiveHrs[index];
+    return nextFiveHrs.temperature[index];
   }
   fetchTime(cityTimeZone) {
     return new Date().toLocaleString("en-US", { timeZone: cityTimeZone });
@@ -137,7 +139,7 @@ function errFunction() {
   errMessage.innerText = "***Invalid City***";
   errMessage.setAttribute("style", "color: red");
   for (let i = 0; i < errTextArray.length; i++) {
-    errTextArray[i].innerText = "NaN";
+    errTextArray[i].innerText = "NiL";
   }
   for (let i = 0; i < errImgArray.length; i++) {
     errImgArray[i].setAttribute(
@@ -151,6 +153,7 @@ function errFunction() {
  *Update the City details in top section.
  */
 function UpdateCity() {
+  getNextFiveHours(this.value);
   updateTopSection(this.value);
 }
 
@@ -160,19 +163,23 @@ function UpdateCity() {
  * @param {string} city
  */
 function updateTopSection(city) {
-  var temp = false;
-  let cityX = city.toLowerCase();
+  let temp = false;
+  let cityIndex;
   for (let cit in dataList) {
-    if (cityX == cit) temp = true;
+    if (city.toLowerCase() == dataList[cit].cityName.toLowerCase()) {
+        temp = true;
+        cityIndex = cit;
+        break;
+    }
   }
   if (temp) {
-    cityObj = new cityFunction(dataList[cityX]);
+    cityObj = new cityFunction(dataList[cityIndex]);
     var citychange = document.getElementById("citychange");
     var errMessage = document.getElementById("err-message");
     citychange.setAttribute("style", "border-color: transparent");
     errMessage.innerText = " ";
-    updateCityTime(cityObj);
     updateCityImg(cityObj);
+    updateCityTime(cityObj);
     updateTempVal(cityObj);
     updateNextFiveHours(cityObj);
   } else {
@@ -288,16 +295,11 @@ function updateNextFiveHours(city) {
     .split("°C")[0];
   for (let index = 1; index <= 6; index++) {
     if (index < 6) {
-      updateTime(document.getElementById("Time" + index), city, index);
-    }
-    if (index < 5) {
-      document.getElementById("Hour" + index).innerText = city
-        .getNextFiveHrs(index - 1)
-        .split("°C")[0];
-    } else {
-      document.getElementById("Hour5").innerText =
-        document.getElementById("Hour4").innerText;
-    }
+        updateTime(document.getElementById("Time" + index), city, index);
+        document.getElementById("Hour" + index).innerText = city
+         .getNextFiveHrs(index - 1)
+         .split("°C")[0];
+    } 
     updateTempImg(
       document.getElementById("Img" + (index - 1)),
       document.getElementById("Hour" + (index - 1)).innerText,
@@ -568,8 +570,8 @@ function updateBlocks() {
       footSectionObj.getTemperature();
     clone.querySelector("#block-humidity").innerText =
       footSectionObj.getHumidity();
-      clone.querySelector("#city-name").innerText =
-      footSectionObj.getCityName()+",";
+    clone.querySelector("#city-name").innerText =
+      footSectionObj.getCityName() + ",";
     document.getElementById("city-time" + index).innerText =
       footSectionObj.updateCardTime(blockList[city]);
     if (index == 11) break;
@@ -671,23 +673,33 @@ function UpdateBlockSortContinent() {
 function UpdateBlockSortTemperature() {
   blockList.sort(
     (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
-  );
+  );totalDetails
   updateBlocks();
 }
-(function () {
-  dataList = cityData;
-  displayList = cityData;
-  blockList = Object.values(dataList);
-  let city = document.getElementById("city");
+
+/**
+ *Async Await function to perform step by step operation
+ */
+const asyncAwait = async () => {
+  await getTotalCityDetails();
+  await getNextFiveHours("London");
+  dataList = totalDetails;
+  displayList = totalDetails;
+  blockList = totalDetails;
+  console.log(dataList);
   for (let cityDetails in dataList) {
     let option = document.createElement("OPTION");
     option.value = dataList[cityDetails].cityName;
     city.appendChild(option);
   }
-  updateTopSection(document.getElementById("citychange").value);
+  updateTopSection("London");
   borderChange("filter0");
   updateBlocks();
   UpdateBlockSort(0);
   clearInterval(blockTimer);
   blockTimer = setInterval(UpdateBlockTime, 500);
+};
+
+(function () {
+    asyncAwait();
 })();
