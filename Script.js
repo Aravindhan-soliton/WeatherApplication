@@ -84,7 +84,7 @@ class cityFunction {
     return this.precipitation;
   }
   getNextFiveHrs(index) {
-    return nextFiveHrs.temperature[index];
+    return nextFiveHrs[index];
   }
   fetchTime(cityTimeZone) {
     return new Date().toLocaleString("en-US", { timeZone: cityTimeZone });
