@@ -13,7 +13,7 @@ let totalDetails;
 let nextFiveHrs;
 const cityId = document.querySelector("#city0");
 const blockId = document.querySelector("#block0");
-document.getElementById("citychange").addEventListener("change", UpdateCity);
+document.querySelector("#citychange").addEventListener("change", UpdateCity);
 document
   .getElementById("filter0")
   .addEventListener("click", () => borderChange("filter0"));
@@ -152,8 +152,8 @@ function errFunction() {
 /**
  *Update the City details in top section.
  */
-function UpdateCity() {
-  getNextFiveHours(this.value);
+async function UpdateCity()  {
+  await getNextFiveHours(this.value);
   updateTopSection(this.value);
 }
 
