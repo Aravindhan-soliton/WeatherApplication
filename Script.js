@@ -119,7 +119,7 @@ midSection.prototype.updateCardTime = function (city) {
   let min = new Date(dateTime).getMinutes();
   const ampm = hour < 12 ? "AM" : "PM";
   hour = hour % 12;
-  hour = hour == 0 ? 12 : hour;
+  hour = hour === 0 ? 12 : hour;
   hour = hour < 10 ? "0" + hour : hour;
   min = min < 10 ? "0" + min : min;
   return hour + ":" + min + " " + ampm;
@@ -251,7 +251,7 @@ function updateCityTime(city) {
         );
     }
     hour %= 12;
-    hour = hour == 0 ? 12 : hour;
+    hour = hour === 0 ? 12 : hour;
     const time =
       (hour < 10 ? "0" + hour : hour) +
       ":" +
@@ -333,7 +333,7 @@ function updateTime(timeUpdate, city, hourAdd) {
   const ampm = hour < 12 ? "AM" : "PM";
   hour = hour + hourAdd;
   hour = hour % 12;
-  hour = hour == 0 ? 12 : hour;
+  hour = hour === 0 ? 12 : hour;
   timeUpdate.innerText = hour + ampm;
 }
 
@@ -349,12 +349,12 @@ function updateTempImg(img, temp, val) {
       "style",
       "background-image: url('./HTML & CSS/Weather Icons/rainyIcon.svg')"
     );
-  } else if (temp < 22 && val == 1) {
+  } else if (temp < 22 && val === 1) {
     img.setAttribute(
       "style",
       "background-image: url('./HTML & CSS/Weather Icons/windyIcon.svg')"
     );
-  } else if (temp < 29 && val == 1) {
+  } else if (temp < 29 && val === 1) {
     img.setAttribute(
       "style",
       "background-image: url('./HTML & CSS/Weather Icons/cloudyIcon.svg')"
@@ -460,7 +460,7 @@ async function midSectionScroll(val) {
   if (val < 0) temp = 1;
   for (let i = 0; i < 100; i++) {
     await sleep(4);
-    if (i % temp == 0)
+    if (i % temp === 0)
       document.getElementById("mid-container").scrollLeft += val;
     else
       document.getElementById("mid-container").scrollLeft +=
@@ -473,7 +473,8 @@ async function midSectionScroll(val) {
  * @param {int} sort
  */
 function displayListUpdate(sort) {
-  if (sort == 2) {
+  sort = parseInt(sort);
+  if (sort === 2) {
     displayList = Object.values(dataList).filter(
       (city) => Number(city.temperature.split("°C")[0]) < 20
     );
@@ -481,7 +482,7 @@ function displayListUpdate(sort) {
       (a, b) => a.humidity.split("%")[0] - b.humidity.split("%")[0]
     );
     displayList.reverse();
-  } else if (sort == 1) {
+  } else if (sort === 1) {
     displayList = Object.values(dataList).filter(
       (city) =>
         Number(city.temperature.split("°C")[0]) > 19 &&
@@ -586,7 +587,7 @@ function updateBlocks() {
       blockList[city].cityName +
       ", " +
       footSectionObj.updateCardTime(blockList[city]);
-    if (index == 11) break;
+    if (index === 11) break;
     index++;
   }
 }
@@ -601,7 +602,7 @@ function UpdateBlockTime() {
       blockList[city].cityName +
       ", " +
       footSectionObj.updateCardTime(blockList[city]);
-    if (index == 11) break;
+    if (index === 11) break;
     index++;
   }
 }
@@ -613,8 +614,8 @@ function UpdateBlockTime() {
 function UpdateBlockSort(val) {
   UpdateBlockSortTemperature();
   UpdateBlockSortContinent();
-  if (val == 1) {
-    if (temperatureSwap == 0) {
+  if (val === 1) {
+    if (temperatureSwap === 0) {
       document
         .getElementById("Temperature-sort")
         .setAttribute(
@@ -631,8 +632,8 @@ function UpdateBlockSort(val) {
         );
       temperatureSwap = 0;
     }
-  } else if (val == 2) {
-    if (continentSwap == 0) {
+  } else if (val === 2) {
+    if (continentSwap === 0) {
       document
         .getElementById("Continent-sort")
         .setAttribute(
@@ -650,14 +651,14 @@ function UpdateBlockSort(val) {
       continentSwap = 0;
     }
   }
-  if (continentSwap == 1) {
-    if (temperatureSwap == 0) {
+  if (continentSwap === 1) {
+    if (temperatureSwap === 0) {
       UpdateBlockSortTemperature();
       blockList.reverse();
     }
     UpdateBlockSortContinent();
     blockList.reverse();
-  } else if (temperatureSwap == 1 && continentSwap == 0) {
+  } else if (temperatureSwap === 1 && continentSwap === 0) {
     blockList.reverse();
     UpdateBlockSortContinent();
   }
