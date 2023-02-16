@@ -1,47 +1,48 @@
 let myInterval;
 let dataList;
 let displayList;
+let blockList;
 let timer;
-const cityId = document.querySelector("#city0");
+let blockTimer;
+let continentSwap = 0;
+let temperatureSwap = 0;
+const cityId = document.querySelector('#city0');
+const blockId = document.querySelector('#block0');
 document.getElementById("citychange").addEventListener("change", UpdateCity);
-document.getElementById("citychange").addEventListener("change", UpdateCity);
-document
-  .getElementById("filter0")
-  .addEventListener("click", () => borderChange("filter0"));
-document
-  .getElementById("filter1")
-  .addEventListener("click", () => borderChange("filter1"));
-document
-  .getElementById("filter2")
-  .addEventListener("click", () => borderChange("filter2"));
-document
-  .getElementById("left-button")
-  .addEventListener("click", () => midSectionScroll(-2.9));
-document
-  .getElementById("right-button")
-  .addEventListener("click", () => midSectionScroll(2.9));
-document
-  .getElementById("number-box")
-  .addEventListener("change", () => cardUpdate());
+document.getElementById("filter0").addEventListener("click",() => borderChange("filter0"));
+document.getElementById("filter1").addEventListener("click", () => borderChange("filter1"));
+document.getElementById("filter2").addEventListener("click", () => borderChange("filter2"));
+document.getElementById("left-button").addEventListener("click", () => midSectionScroll(-2.9));
+document.getElementById("right-button").addEventListener("click", () => midSectionScroll(2.9));
+document.getElementById("number-box").addEventListener("change", () => cardUpdate());
 window.addEventListener("resize", updateScrollArrow);
-(function () {
-  dataList = cityData;
-  displayList = cityData;
-  var city = document.getElementById("city");
-  for (let cityDetails in dataList) {
-    var option = document.createElement("OPTION");
-    option.value = dataList[cityDetails].cityName;
-    city.appendChild(option);
-  }
-  updateTopSection(document.getElementById("citychange").value);
-  borderChange("filter0");
+document.getElementById("Continent-sort").addEventListener("click",() => UpdateBlockSort(2));
+document.getElementById("Temperature-sort").addEventListener("click",() => UpdateBlockSort(1));
+document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+
+(function (){ 
+    dataList = cityData;
+    displayList = cityData;
+    blockList = Object.values(dataList);
+    var city=document.getElementById("city");
+    for ( let cityDetails in dataList) {
+        var option = document.createElement("OPTION");
+        option.value = dataList[cityDetails].cityName;
+        city.appendChild(option);}
+    updateTopSection(document.getElementById("citychange").value); 
+    borderChange("filter0");
+    updateBlocks();
+    UpdateBlockSort(0);
+    clearInterval(blockTimer);
+    blockTimer = setInterval(UpdateBlockTime, 500);
 })();
 
 /**
  *Update the City details in top section.
  */
-function UpdateCity() {
-  updateTopSection(document.getElementById("citychange").value);
+function UpdateCity(){
+  updateTopSection(this.value);  
 }
 
 /**
@@ -418,32 +419,39 @@ function displayListUpdate(sort) {
 /**
  *function calls functions to Updates Live date and time in displayed cards in mid section.
  */
-function UpdateCardDateTime() {
-  let numBoxValue = document.getElementById("number-box").value;
-  let index = 0;
-  for (let city in displayList) {
-    updateCardDate(displayList[city], "card-date" + index);
-    updateCardTime(displayList[city], "card-time" + index);
-    if (index >= parseInt(numBoxValue) - 1) break;
-    index++;
-  }
+function UpdateCardDateTime(){
+    let numBoxValue = document.getElementById("number-box").value;
+    let index = 0;
+    for(let city in displayList){
+        try{
+        updateCardDate(displayList[city], "card-date"+index);
+        document.getElementById("card-time"+index).innerText=   updateCardTime(displayList[city], "card-time"+index);
+        }
+        catch{          
+        }
+        if(index>=parseInt(numBoxValue)-1)
+        break;
+        index++;
+    }
 }
 
 /**
  *Updates Live time in displayed cards in mid section.
  * @param {object} city
  * @param {id} timeId
+ * @return {*} time
  */
-function updateCardTime(city, timeId) {
-  let dateTime = fetchTime(city);
-  let hour = new Date(dateTime).getHours();
-  let min = new Date(dateTime).getMinutes();
-  const ampm = hour < 12 ? "AM" : "PM";
-  hour = hour % 12;
-  hour = hour === 0 ? 12 : hour;
-  hour = hour < 10 ? "0" + hour : hour;
-  min = min < 10 ? "0" + min : min;
-  document.getElementById(timeId).innerText = hour + ":" + min + " " + ampm;
+
+function updateCardTime(city){
+    let dateTime = fetchTime(city);
+    let hour = (new Date(dateTime).getHours());
+    let min = new Date(dateTime).getMinutes();
+    const ampm = (hour<12) ? "AM" : "PM";
+    hour = hour % 12;
+    hour = hour==0 ? 12 : hour;
+    hour = hour<10 ? "0"+hour : hour; 
+    min = min<10 ? "0"+min : min; 
+    return hour+":"+min+" "+ampm;
 }
 
 /**
@@ -469,22 +477,125 @@ function updateCardDate(city, dateId) {
 /**
  *Updates Visibility of scroll arrows and alignment of cards in mid section.
  */
-function updateScrollArrow() {
-  let divWidth = document.getElementById("card-div").clientWidth;
-  let displayCount = displayList.length;
-  let numberBoxCount = document.getElementById("number-box").value;
-  let count = displayCount < numberBoxCount ? displayCount : numberBoxCount;
-  if (divWidth < count * 280 + 20) {
-    document
-      .getElementById("mid-container")
-      .setAttribute("style", "justify-content: none");
-    document.getElementById("arrow-div1").setAttribute("style", "display:flex");
-    document.getElementById("arrow-div2").setAttribute("style", "display:flex");
-  } else {
-    document
-      .getElementById("mid-container")
-      .setAttribute("style", "justify-content: center");
-    document.getElementById("arrow-div1").setAttribute("style", "display:none");
-    document.getElementById("arrow-div2").setAttribute("style", "display:none");
-  }
+function updateScrollArrow(){
+    let divWidth = document.getElementById("card-div").clientWidth;
+    let displayCount = displayList.length;
+    let numberBoxCount = document.getElementById("number-box").value;
+    let count = displayCount<numberBoxCount? displayCount:numberBoxCount;
+    if(divWidth < count*280){
+        document.getElementById("mid-container").setAttribute("style","justify-content: none");
+        document.getElementById("arrow-div1").setAttribute("style","display:flex");
+        document.getElementById("arrow-div2").setAttribute("style","display:flex");
+    }
+    else{
+        document.getElementById("mid-container").setAttribute("style","justify-content: center");
+        document.getElementById("arrow-div1").setAttribute("style","display:none");
+        document.getElementById("arrow-div2").setAttribute("style","display:none");
+    }
+}
+
+/**
+ *Update bottom section by creating blocks based on the city list.
+ */
+function updateBlocks(){
+    let index = 0;
+    clearInterval(blockTimer);
+    document.getElementById("blocks").replaceChildren();
+    for(let city in blockList){
+        let clone = blockId.cloneNode(true);
+        clone.id='block'+index;
+        document.getElementById("blocks").appendChild(clone);
+        let timeZone = blockList[city].timeZone;
+        clone.querySelector("#city-time").id="city-time"+index;
+        clone.querySelector("#continent-name").innerText=timeZone.substring(0,timeZone.indexOf('/'));
+        clone.querySelector("#block-temp").innerText=blockList[city].temperature;
+        clone.querySelector("#block-humidity").innerText=blockList[city].humidity;
+        document.getElementById("city-time"+index).innerText=blockList[city].cityName+", "+updateCardTime(blockList[city]);
+        if(index==11)
+            break;
+        index++;
+    }
+}
+
+/**
+ *Update block time for every minute.
+ */
+ function UpdateBlockTime(){
+    let index = 0;
+    for(let city in blockList){
+        document.getElementById("city-time"+index).innerText=blockList[city].cityName+", "+updateCardTime(blockList[city]);
+        if(index==11)
+            break;
+        index++;
+    }
+}
+
+/**
+ *Update bottom section blocks based on continent and temperature filters.
+ * @param {int} val
+ */
+ function UpdateBlockSort(val){
+    UpdateBlockSortTemperature();
+    UpdateBlockSortContinent();
+    if(val==1){
+        if(temperatureSwap==0){
+            document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')");
+            temperatureSwap=1;
+        }
+        else{
+            document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+            temperatureSwap=0;
+        }
+    }
+    else if(val==2){
+        if(continentSwap==0){
+            document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')");
+            continentSwap=1;
+        }
+        else{
+            document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+            continentSwap=0;
+        }
+    }
+    if(continentSwap==1){
+        if(temperatureSwap==0){
+        UpdateBlockSortTemperature();
+        blockList.reverse();
+        }
+        UpdateBlockSortContinent();
+        blockList.reverse();
+    }
+    else if(temperatureSwap==1 && continentSwap==0){
+        blockList.reverse();
+        UpdateBlockSortContinent();
+    }
+    updateBlocks();
+    blockTimer = setInterval(UpdateBlockTime, 500);
+}
+
+/**
+ *Sort the block list based on continents
+ */
+function UpdateBlockSortContinent(){
+    blockList.sort(
+        function (a, b) {
+            if (a.timeZone.split("/")[0] < b.timeZone.split("/")[0]) {
+              return -1;
+            }
+            if (a.timeZone.split("/")[0] > b.timeZone.split("/")[0]) {
+              return 1;
+            }
+            return 0;
+    });
+    updateBlocks();
+}
+
+/**
+ *Sort the block list based on Temperature.
+ */
+function UpdateBlockSortTemperature(){
+    blockList.sort(
+        (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
+    );
+    updateBlocks();
 }
