@@ -1,5 +1,5 @@
 .am {
-	background-image: url("HTML & CSS/General Images & Icons/amState.svg");
+	background-image: url("assets/amState.svg");
 	background-repeat: no-repeat;
 	background-size: 80px;
 	height: 77px;
@@ -31,7 +31,7 @@
     cursor: pointer;
 }
 .bg {
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("HTML & CSS/General Images & Icons/background.svg");
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/background.svg");
 	background-size: cover;
 }
 .block {
@@ -49,7 +49,7 @@
     box-shadow: 10px 10px 5px 	black;
 }
 .block-humidity {
-	background-image: url("HTML & CSS/Weather Icons/humidityIcon.svg");
+	background-image: url("assets/humidityIcon.svg");
 	background-position-x: right;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -114,7 +114,7 @@
 	width: 60%;
 }
 .card-img {
-	background: url("HTML & CSS/Icons for cities/dublin.svg");
+	background: url("assets/dublin.svg");
 	background-position-x: right;
 	background-position-y: 90px;
 	background-repeat: no-repeat;
@@ -138,7 +138,7 @@
 
 }
 .card-temp-img {
-	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
+	background-image: url("assets/sunnyIcon.svg");
 	background-position-x: left;
 	background-position-y: bottom;
 	background-repeat: no-repeat;
@@ -165,7 +165,7 @@
 	width: 50px;
 }
 .city-logo {
-	background-image: url("HTML & CSS/Icons for cities/bangkok.svg");
+	background-image: url("assets/bangkok.svg");
 	background-repeat: no-repeat;
 	background-size: 95%;
 	height: 100%;
@@ -186,7 +186,7 @@
 	width: 100%;
 }
 .cloud {
-	background-image: url("HTML & CSS/Weather Icons/precipitationIcon.svg");
+	background-image: url("assets/precipitationIcon.svg");
 	background-position-x: left;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -203,7 +203,7 @@
 	font-weight: 400;
 }
 .cool-img {
-	background-image: url("HTML & CSS/Weather Icons/snowflakeIcon.svg");
+	background-image: url("assets/snowflakeIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -363,7 +363,7 @@
     height: 114%;
 }
 .humidity {
-	background-image: url("HTML & CSS/Weather Icons/humidityIcon.svg");
+	background-image: url("assets/humidityIcon.svg");
 	background-position-x: left;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -411,7 +411,7 @@
     cursor: pointer;
 }
 .rain-img {
-	background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+	background-image: url("assets/rainyIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -466,7 +466,7 @@
 	padding-top: 30px;
 }
 .sun-img {
-	background-image: url("HTML & CSS/Weather Icons/sunnyIcon.svg");
+	background-image: url("assets/sunnyIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -510,7 +510,7 @@
 	background-repeat: no-repeat;
 	background-size: 70%;
 	height: 60px;
-    background-image: url("HTML & CSS/Weather Icons/rainyIcon.svg");
+    background-image: url("assets/rainyIcon.svg");
 }
 .width100 {
 	width: 120px;
