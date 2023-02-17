@@ -1,0 +1,21 @@
+{
+  "name": "aravindhan_webtips_assignments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://aravindhan_palanisamy@bitbucket.org/aravindhan_palanisamy/aravindhan_webtips_assignments.git"
+  },
+  "author": "Aravindhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/aravindhan_palanisamy/aravindhan_webtips_assignments/issues"
+  },
+  "homepage": "https://bitbucket.org/aravindhan_palanisamy/aravindhan_webtips_assignments#readme"
+}
