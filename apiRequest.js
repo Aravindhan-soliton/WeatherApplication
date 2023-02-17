@@ -4,7 +4,7 @@ let cityTimeData;
  *return all cities timezone
  */
 const getTotalCityDetails = async () => {
-  await fetch("https://soliton.glitch.me/all-timezone-cities")
+  await fetch("http://127.0.0.1:8000/all-timezone-cities")
     .then((response) => {
       return response.json();
     })
@@ -13,7 +13,7 @@ const getTotalCityDetails = async () => {
     })
     .catch((error) => {
       if(confirm("Error while fetching data, click ok to reload the page... ", error) == true)
-      location.reload();
+       location.reload();
     });
 };
 
