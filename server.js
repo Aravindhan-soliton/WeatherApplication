@@ -1,6 +1,12 @@
-import * as fs from 'node:fs';
-import * as http from 'node:http';
-import * as path from 'node:path';
+const fs = require('fs');
+const http = require('http');
+const path = require('path');
+const {
+    allTimeZones,
+    timeForOneCity,
+    nextNhoursWeather
+  }=
+   require('./timeZone.js');
 
 const PORT = 8000;
 
@@ -40,6 +46,14 @@ http.createServer(async (req, res) => {
   res.writeHead(statusCode, { 'Content-Type': mimeType });
   file.stream.pipe(res);
   console.log(`${req.method} ${req.url} ${statusCode}`);
+  if(req.url==="/all-timezone-cities"){
+    res.writeHead(200,{"Content-Type":"text/json"});
+    let data = allTimeZones();
+    data=JSON.stringify(data);
+    res.write(data);
+    res.end();
+  }
 }).listen(PORT);
 
 console.log(`Server running at http://127.0.0.1:${PORT}/`);
+
