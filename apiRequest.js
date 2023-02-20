@@ -27,7 +27,7 @@ var requestOptions1 = {
  * @param {string} city
  */
 const getNextFiveHoursCity = async (city) => {
-  await fetch("https://soliton.glitch.me?city=" + city, requestOptions1)
+  await fetch("http://127.0.0.1:8000?city=" + city, requestOptions1)
     .then((response) => response.json())
     .then((result) => {
       cityTimeData = result;
@@ -58,7 +58,7 @@ const getNextFiveHours = async (city) => {
     body: raw,
     redirect: "follow",
   };
-  await fetch("https://soliton.glitch.me/hourly-forecast", requestOptions2)
+  await fetch("http://127.0.0.1:8000/hourly-forecast", requestOptions2)
     .then((response) => response.json())
     .then((result) => {
       nextFiveHrs = result.temperature;
