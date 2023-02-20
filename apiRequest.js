@@ -27,13 +27,13 @@ var requestOptions1 = {
  * @param {string} city
  */
 const getNextFiveHoursCity = async (city) => {
-  await fetch("https://soliton.glitch.me?city=" + city, requestOptions1)
+  await fetch("http://127.0.0.1:8000?city=" + city, requestOptions1)
     .then((response) => response.json())
     .then((result) => {
       cityTimeData = result;
     })
     .catch((error) => {
-      if(confirm("Error while fetching data, click ok to reload the page... ", error) == true)
+      if(confirm("Error while fetching data, click ok to reload the page..11111. ", error) == true)
       location.reload();
     });
 };
@@ -58,7 +58,7 @@ const getNextFiveHours = async (city) => {
     body: raw,
     redirect: "follow",
   };
-  await fetch("https://soliton.glitch.me/hourly-forecast", requestOptions2)
+  await fetch("http://127.0.0.1:8000/hourly-forecast", requestOptions2)
     .then((response) => response.json())
     .then((result) => {
       nextFiveHrs = result.temperature;
