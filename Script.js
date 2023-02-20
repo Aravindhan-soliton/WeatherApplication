@@ -62,7 +62,6 @@ class cityFunction {
     this.temperature = city.temperature;
     this.humidity = city.humidity;
     this.precipitation = city.precipitation;
-    // this.nextFiveHrs = city.nextFiveHrs;
   }
   // Get values operation performed for all the needed fieldscity
   getCityName() {
@@ -152,8 +151,7 @@ function errFunction() {
 /**
  *Update the City details in top section.
  */
-async function UpdateCity()  {
-  await getNextFiveHours(this.value);
+function UpdateCity()  {
   updateTopSection(this.value);
 }
 
@@ -162,7 +160,7 @@ async function UpdateCity()  {
  *else call error function to show error message.es
  * @param {string} city
  */
-function updateTopSection(city) {
+ async function updateTopSection(city) {
   let temp = false;
   let cityIndex;
   for (let cit in dataList) {
@@ -173,6 +171,7 @@ function updateTopSection(city) {
     }
   }
   if (temp) {
+    await getNextFiveHours(city);
     cityObj = new cityFunction(dataList[cityIndex]);
     var citychange = document.getElementById("citychange");
     var errMessage = document.getElementById("err-message");
@@ -680,7 +679,6 @@ function UpdateBlockSortTemperature() {
  */
 const asyncAwait = async () => {
   await getTotalCityDetails();
-  await getNextFiveHours("London");
   dataList = totalDetails;
   displayList = totalDetails;
   blockList = totalDetails;
