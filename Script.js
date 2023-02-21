@@ -493,11 +493,9 @@ function UpdateCardDateTime() {
   let numBoxValue = document.getElementById("number-box").value;
   let index = 0;
   for (let city in displayList) {
-    try {
       updateCardDate(displayList[city], "card-date" + index);
       document.getElementById("card-time" + index).innerText =
         midSectionObj.updateCardTime(displayList[city], "card-time" + index);
-    } catch {}
     if (index >= parseInt(numBoxValue) - 1) break;
     index++;
   }
