@@ -701,5 +701,5 @@ const asyncAwait = async () => {
 (function () {
   asyncAwait();
   clearInterval(weatherListInterval);
-  weatherListInterval = setInterval(asyncAwait, 10000);
+  weatherListInterval = setInterval(asyncAwait, 3600000);
 })();
