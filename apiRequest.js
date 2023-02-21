@@ -12,7 +12,7 @@ const getTotalCityDetails = async () => {
       totalDetails = responseData;
     })
     .catch((error) => {
-      if(confirm("Error while fetching data, click ok to reload the page... ", error) == true)
+      if(confirm("Error while fetching data, click ok to reload the page... ", error) === true)
       location.reload();
     });
 };
@@ -33,7 +33,7 @@ const getNextFiveHoursCity = async (city) => {
       cityTimeData = result;
     })
     .catch((error) => {
-      if(confirm("Error while fetching data, click ok to reload the page... ", error) == true)
+      if(confirm("Error while fetching data, click ok to reload the page... ", error) === true)
       location.reload();
     });
 };
@@ -64,7 +64,7 @@ const getNextFiveHours = async (city) => {
       nextFiveHrs = result.temperature;
     })
     .catch((error) => {
-      if(confirm("Error while fetching data, click ok to reload the page... ", error) == true)
+      if(confirm("Error while fetching data, click ok to reload the page... ", error) === true)
       location.reload();
       nextFiveHrs = ["nil","nil","nil","nil","nil"];
     });
