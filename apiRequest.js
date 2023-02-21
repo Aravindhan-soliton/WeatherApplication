@@ -33,7 +33,7 @@ const getNextFiveHoursCity = async (city) => {
       cityTimeData = result;
     })
     .catch((error) => {
-      if(confirm("Error while fetching data, click ok to reload the page..11111. ", error) == true)
+      if(confirm("Error while fetching data, click ok to reload the page... ", error) == true)
       location.reload();
     });
 };
