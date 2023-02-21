@@ -1,94 +1,42 @@
+const fs = require("fs");
+const http = require("http");
+const path = require("path");
+const {
+  allTimeZones,
+  timeForOneCity,
+  nextNhoursWeather,
+} = require("./timeZone.js");
+
+let lastForeCast;
 var express = require("express");
 var app = express();
+app.use(express.json());
 
+// send all cities timeZone
+app.get("/all-timezone-cities",  function (req, res) {
+  lastForeCast = allTimeZones()
+  res.json(lastForeCast);
+});
+
+//send a city time to
 app.get("/", function (req, res) {
-  app.use('/css',express.static(__dirname +'/site.css'));
-  res.sendFile(__dirname + "/");
+  let city = req.query.city;
+  if(city){
+    res.json(timeForOneCity(city));
+  }
+  else if(req.url.endsWith("/")){
+      app.use(express.static("./"));
+      res.sendFile(__dirname + "/index.html");
+  }
 });
 
-var server = app.listen(8000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log("Example app listening at http://%s:%s", host, port);
-});
+//send hourly forecast for one city
+app.post( "/hourly-forecast", function (req, res) {
+  res.json(nextNhoursWeather(req.body.city_Date_Time_Name , "6", lastForeCast));
+})
 
-// const fs = require("fs");
-// const http = require("http");
-// const path = require("path");
-// const {
-//   allTimeZones,
-//   timeForOneCity,
-//   nextNhoursWeather,
-// } = require("./timeZone.js");
+const server = http.createServer(app);
+const port = 8000;
+server.listen(port);
 
-// let cityDTN;
-// let city;
-// let allTimeZone;
-
-const PORT = 8000;
-
-// const MIME_TYPES = {
-//   default: "application/octet-stream",
-//   html: "text/html; charset=UTF-8",
-//   js: "application/javascript",
-//   css: "text/css",
-//   png: "image/png",
-//   jpg: "image/jpg",
-//   gif: "image/gif",
-//   ico: "image/x-icon",
-//   svg: "image/svg+xml",
-// };
-
-// const STATIC_PATH = path.join(process.cwd(), "./");
-
-// const toBool = [() => true, () => false];
-
-// const prepareFile = async (url) => {
-//   const paths = [STATIC_PATH, url];
-//   if (url.endsWith("/")) paths.push("index.html");
-//   const filePath = path.join(...paths);
-//   const pathTraversal = !filePath.startsWith(STATIC_PATH);
-//   const exists = await fs.promises.access(filePath).then(...toBool);
-//   const found = !pathTraversal && exists;
-//   const streamPath = found ? filePath : STATIC_PATH + "/404.html";
-//   const ext = path.extname(streamPath).substring(1).toLowerCase();
-//   const stream = fs.createReadStream(streamPath);
-//   return { found, ext, stream };
-// };
-
-// http
-//   .createServer(async (req, res) => {
-//     const file = await prepareFile(req.url);
-//     const statusCode = file.found ? 200 : 404;
-//     const mimeType = MIME_TYPES[file.ext] || MIME_TYPES.default;
-//     res.writeHead(statusCode, { "Content-Type": mimeType });
-//     file.stream.pipe(res);
-//     console.log(`${req.method} ${req.url} ${statusCode}`);
-//     if (req.url === "/all-timezone-cities") {
-//       res.writeHead(200, { "Content-Type": "text/json" });
-//       let data = allTimeZones();
-//       data = JSON.stringify(data);
-//       allTimeZone = data.json;
-//       res.write(data);
-//       res.end();
-//     }
-//     if (req.url.split("=")[0] === "/?city") {
-//       city = req.url.split("=")[1];
-//       res.writeHead(200, { "Content-Type": "text/json" });
-//       let data = timeForOneCity(city);
-//       cityDTN = data;
-//       res.write(JSON.stringify(cityDTN));
-//       res.end();
-//     }
-//     if (req.url === "/hourly-forecast") {
-//       res.writeHead(200, { "Content-Type": "text/json" });
-//       let lastForeCast = allTimeZones();
-//       let data = nextNhoursWeather(cityDTN.city_Date_Time_Name, "6", lastForeCast);
-//       data = JSON.stringify(data);
-//       res.write(data);
-//       res.end();
-//     }
-//   })
-//   .listen(PORT);
-
-console.log(`Server running at http://127.0.0.1:${PORT}/`);
+console.log(`Server running at http://127.0.0.1:${port}/`);
