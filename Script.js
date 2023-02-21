@@ -2,6 +2,7 @@ let cityObj;
 let midSectionObj;
 let footSectionObj;
 let myInterval;
+let weatherListInterval;
 let dataList;
 let displayList;
 let blockList;
@@ -167,12 +168,12 @@ function UpdateCity()  {
     if (city.toLowerCase() == dataList[cit].cityName.toLowerCase()) {
         temp = true;
         cityIndex = cit;
+        cityObj = new cityFunction(dataList[cityIndex]);
         break;
     }
   }
   if (temp) {
     await getNextFiveHours(city);
-    cityObj = new cityFunction(dataList[cityIndex]);
     var citychange = document.getElementById("citychange");
     var errMessage = document.getElementById("err-message");
     citychange.setAttribute("style", "border-color: transparent");
@@ -672,7 +673,7 @@ function UpdateBlockSortContinent() {
 function UpdateBlockSortTemperature() {
   blockList.sort(
     (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
-  );totalDetails
+  );
   updateBlocks();
 }
 
@@ -685,6 +686,7 @@ const asyncAwait = async () => {
   displayList = totalDetails;
   blockList = totalDetails;
   console.log(dataList);
+  city.innerHTML="";
   for (let cityDetails in dataList) {
     let option = document.createElement("OPTION");
     option.value = dataList[cityDetails].cityName;
@@ -699,5 +701,7 @@ const asyncAwait = async () => {
 };
 
 (function () {
-    asyncAwait();
+  asyncAwait();
+  clearInterval(weatherListInterval);
+  weatherListInterval = setInterval(asyncAwait, 10000);
 })();
