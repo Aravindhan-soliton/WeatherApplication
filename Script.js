@@ -6,11 +6,8 @@ let dataList;
 let displayList;
 let blockList;
 let timer;
-let blockTimer;
-let continentSwap = 0;
-let temperatureSwap = 0;
 const cityId = document.querySelector("#city0");
-const blockId = document.querySelector("#block0");
+document.getElementById("citychange").addEventListener("change", UpdateCity);
 document.getElementById("citychange").addEventListener("change", UpdateCity);
 document
   .getElementById("filter0")
@@ -29,7 +26,7 @@ document
   .addEventListener("click", () => midSectionScroll(2.9));
 document
   .getElementById("number-box")
-  .addEventListener("change", () => numberBoxUpdate());
+  .addEventListener("change", () => cardUpdate());
 window.addEventListener("resize", updateScrollArrow);
 document
   .getElementById("Continent-sort")
