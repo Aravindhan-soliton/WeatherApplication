@@ -1,70 +1,193 @@
+let cityObj;
+let midSectionObj;
+let footSectionObj;
 let myInterval;
 let dataList;
 let displayList;
 let blockList;
 let timer;
-let blockTimer;
-let continentSwap = 0;
-let temperatureSwap = 0;
-const cityId = document.querySelector('#city0');
-const blockId = document.querySelector('#block0');
+const cityId = document.querySelector("#city0");
 document.getElementById("citychange").addEventListener("change", UpdateCity);
-document.getElementById("filter0").addEventListener("click",() => borderChange("filter0"));
-document.getElementById("filter1").addEventListener("click", () => borderChange("filter1"));
-document.getElementById("filter2").addEventListener("click", () => borderChange("filter2"));
-document.getElementById("left-button").addEventListener("click", () => midSectionScroll(-2.9));
-document.getElementById("right-button").addEventListener("click", () => midSectionScroll(2.9));
-document.getElementById("number-box").addEventListener("change", () => cardUpdate());
+document.getElementById("citychange").addEventListener("change", UpdateCity);
+document
+  .getElementById("filter0")
+  .addEventListener("click", () => borderChange("filter0"));
+document
+  .getElementById("filter1")
+  .addEventListener("click", () => borderChange("filter1"));
+document
+  .getElementById("filter2")
+  .addEventListener("click", () => borderChange("filter2"));
+document
+  .getElementById("left-button")
+  .addEventListener("click", () => midSectionScroll(-2.9));
+document
+  .getElementById("right-button")
+  .addEventListener("click", () => midSectionScroll(2.9));
+document
+  .getElementById("number-box")
+  .addEventListener("change", () => cardUpdate());
 window.addEventListener("resize", updateScrollArrow);
-document.getElementById("Continent-sort").addEventListener("click",() => UpdateBlockSort(2));
-document.getElementById("Temperature-sort").addEventListener("click",() => UpdateBlockSort(1));
-document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
-document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
+document
+  .getElementById("Continent-sort")
+  .addEventListener("click", () => UpdateBlockSort(2));
+document
+  .getElementById("Temperature-sort")
+  .addEventListener("click", () => UpdateBlockSort(1));
+document
+  .getElementById("Temperature-sort")
+  .setAttribute(
+    "style",
+    "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
+  );
+document
+  .getElementById("Continent-sort")
+  .setAttribute(
+    "style",
+    "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
+  );
 
-(function (){ 
-    dataList = cityData;
-    displayList = cityData;
-    blockList = Object.values(dataList);
-    var city=document.getElementById("city");
-    for ( let cityDetails in dataList) {
-        var option = document.createElement("OPTION");
-        option.value = dataList[cityDetails].cityName;
-        city.appendChild(option);}
-    updateTopSection(document.getElementById("citychange").value); 
-    borderChange("filter0");
-    updateBlocks();
-    UpdateBlockSort(0);
-    clearInterval(blockTimer);
-    blockTimer = setInterval(UpdateBlockTime, 500);
-})();
+/**
+ *prototype function for top section.
+ */
+let cityFunction = function () {};
+// Set values operation performed for all the needed fieldscity
+cityFunction.prototype.setCityName = function (cityName) {
+  this.cityName = cityName;
+};
+cityFunction.prototype.setDateAndTime = function (dateAndTime) {
+  this.dateAndTime = dateAndTime;
+};
+cityFunction.prototype.setTimeZone = function (timeZone) {
+  this.timeZone = timeZone;
+};
+cityFunction.prototype.setTemperature = function (temperature) {
+  this.temperature = temperature;
+};
+cityFunction.prototype.setHumidity = function (humidity) {
+  this.humidity = humidity;
+};
+cityFunction.prototype.setPrecipitation = function (precipitation) {
+  this.precipitation = precipitation;
+};
+cityFunction.prototype.setNextFiveHrs = function (nextFiveHrs) {
+  this.nextFiveHrs = nextFiveHrs;
+};
+// Get values operation performed for all the needed fieldscity
+cityFunction.prototype.getCityName = function () {
+  return this.cityName;
+};
+cityFunction.prototype.getDateAndTime = function () {
+  return this.dateAndTime;
+};
+cityFunction.prototype.getTimeZone = function () {
+  return this.timeZone;
+};
+cityFunction.prototype.getTemperature = function () {
+  return this.temperature;
+};
+cityFunction.prototype.getHumidity = function () {
+  return this.humidity;
+};
+cityFunction.prototype.getPrecipitation = function () {
+  return this.precipitation;
+};
+cityFunction.prototype.getNextFiveHrs = function (index) {
+  return this.nextFiveHrs[index];
+};
+cityFunction.prototype.fetchTime = function (cityTimeZone) {
+  return new Date().toLocaleString("en-US", { timeZone: cityTimeZone });
+};
+
+/**
+ *prototype function for mid section.
+ */
+let midSection = function () {};
+midSection.prototype = new cityFunction();
+/**
+ *Updates Live time in displayed cards in mid section.
+ * @param {object} city
+ * @param {id} timeId
+ * @return {*} time
+ */
+midSection.prototype.updateCardTime = function (city) {
+  let dateTime = cityFunction.prototype.fetchTime(city.timeZone);
+  let hour = new Date(dateTime).getHours();
+  let min = new Date(dateTime).getMinutes();
+  const ampm = hour < 12 ? "AM" : "PM";
+  hour = hour % 12;
+  hour = hour === 0 ? 12 : hour;
+  hour = hour < 10 ? "0" + hour : hour;
+  min = min < 10 ? "0" + min : min;
+  return hour + ":" + min + " " + ampm;
+};
+
+/**
+ *prototype function for foot section.
+ */
+let footSection = function() {};
+footSection.prototype = new midSection();
+
+/**
+ *shows err message if the given city is not available.
+ */
+function errFunction() {
+  let errMessage = document.getElementById("err-message");
+  let citychange = document.getElementById("citychange");
+  let errImgArray = document.getElementsByClassName("err-img");
+  let errTextArray = document.getElementsByClassName("err-text");
+  myStopFunction();
+  citychange.setAttribute("style", "border-color: red");
+  errMessage.innerText = "***Invalid City***";
+  errMessage.setAttribute("style", "color: red");
+  for (let i = 0; i < errTextArray.length; i++) {
+    errTextArray[i].innerText = "NaN";
+  }
+  for (let i = 0; i < errImgArray.length; i++) {
+    errImgArray[i].setAttribute(
+      "style",
+      "background-image: url('./HTML & CSS/General Images & Icons/warning.svg')"
+    );
+  }
+}
 
 /**
  *Update the City details in top section.
  */
-function UpdateCity(){
-  updateTopSection(this.value);  
+function UpdateCity() {
+  updateTopSection(this.value);
 }
 
 /**
  *Check for the entered city in the List and Load it,
- *else call error function to show error message.
+ *else call error function to show error message.es
  * @param {string} city
  */
 function updateTopSection(city) {
-  var temp = false;
-  let x = city.toLowerCase();
+  let errMessage;
+  let citychange;
+  let temp = false;
+  let cityX = city.toLowerCase();
   for (let cit in dataList) {
-    if (x === cit) temp = true;
+    if (cityX == cit) temp = true;
   }
   if (temp) {
-    var citychange = document.getElementById("citychange");
-    var errMessage = document.getElementById("err-message");
+    cityObj = new cityFunction();
+    cityObj.setCityName(dataList[cityX].cityName);
+    cityObj.setDateAndTime(dataList[cityX].dateAndTime);
+    cityObj.setTemperature(dataList[cityX].temperature);
+    cityObj.setHumidity(dataList[cityX].humidity);
+    cityObj.setNextFiveHrs(dataList[cityX].nextFiveHrs);
+    cityObj.setTimeZone(dataList[cityX].timeZone);
+    cityObj.setPrecipitation(dataList[cityX].precipitation);
+    citychange = document.getElementById("citychange");
+    errMessage = document.getElementById("err-message");
     citychange.setAttribute("style", "border-color: transparent");
     errMessage.innerText = " ";
-    updateCityTime(x);
-    updateCityImg(x);
-    updateTempVal(x);
-    updateNextFiveHours(x);
+    updateCityTime(cityObj);
+    updateCityImg(cityObj);
+    updateTempVal(cityObj);
+    updateNextFiveHours(cityObj);
   } else {
     errFunction();
   }
@@ -79,17 +202,10 @@ function updateCityImg(city) {
     .getElementById("city-logo")
     .setAttribute(
       "style",
-      "background-image: url('./HTML & CSS/Icons for cities/" + city + ".svg')"
+      "background-image: url('./HTML & CSS/Icons for cities/" +
+        city.getCityName().toLowerCase() +
+        ".svg')"
     );
-}
-
-/**
- *fetch date and time for given city.
- * @param {object} city
- * @return {VarDate} date and time.
- */
-function fetchTime(city) {
-  return new Date().toLocaleString("en-US", { timeZone: city.timeZone });
 }
 
 /**
@@ -101,11 +217,13 @@ function updateCityTime(city) {
   myStopFunction();
   myInterval = setInterval(myClock, 1000);
   function myClock() {
+    let sec;
     let dateId = document.getElementById("date");
     let timeId = document.getElementById("time");
     let secId = document.getElementById("sec");
-    const dateTime = fetchTime(dataList[city]);
+    const dateTime = city.fetchTime(city.getTimeZone());
     const date = new Date(dateTime).getDate();
+    let time;
     let hour = new Date(dateTime).getHours();
     const min = new Date(dateTime).getMinutes();
     const fullDate =
@@ -135,12 +253,12 @@ function updateCityTime(city) {
     }
     hour %= 12;
     hour = hour === 0 ? 12 : hour;
-    const time =
+    time =
       (hour < 10 ? "0" + hour : hour) +
       ":" +
       (min < 10 ? "0" + min : min) +
       ":";
-    let sec = new Date(dateTime).getSeconds();
+    sec = new Date(dateTime).getSeconds();
     sec = sec < 10 ? "0" + sec : sec;
     timeId.innerText = time;
     dateId.innerText = fullDate;
@@ -166,19 +284,12 @@ function updateTempVal(city) {
   let tempF = document.getElementById("tempF");
   let humidity = document.getElementById("humidity");
   let precipitation = document.getElementById("precipitation");
-  let cIndex = dataList[city].temperature.indexOf("C");
-  let cVal = dataList[city].temperature.substring(0, cIndex - 1);
-  tempC.innerText = cVal + " C";
+  let cVal = city.getTemperature().split("°C")[0];
   let fVal = (cVal * 9) / 5 + 32;
+  tempC.innerText = cVal + " C";
   tempF.innerText = Math.round(fVal) + " F";
-  humidity.innerText = dataList[city].humidity.substring(
-    0,
-    dataList[city].humidity.length - 1
-  );
-  precipitation.innerText = dataList[city].precipitation.substring(
-    0,
-    dataList[city].precipitation.length - 1
-  );
+  humidity.innerText = city.getHumidity().split("%")[0];
+  precipitation.innerText = city.getPrecipitation().split("%")[0];
 }
 
 /**
@@ -187,20 +298,17 @@ function updateTempVal(city) {
  */
 function updateNextFiveHours(city) {
   document.getElementById("now").innerText = "Now";
-  document.getElementById("Hour0").innerText = dataList[
-    city
-  ].temperature.substring(0, dataList[city].temperature.length - 2);
+  document.getElementById("Hour0").innerText = city
+    .getTemperature()
+    .split("°C")[0];
   for (let index = 1; index <= 6; index++) {
     if (index < 6) {
       updateTime(document.getElementById("Time" + index), city, index);
     }
     if (index < 5) {
-      document.getElementById("Hour" + index).innerText = dataList[
-        city
-      ].nextFiveHrs[index - 1].substring(
-        0,
-        dataList[city].nextFiveHrs[index - 1].length - 2
-      );
+      document.getElementById("Hour" + index).innerText = city
+        .getNextFiveHrs(index - 1)
+        .split("°C")[0];
     } else {
       document.getElementById("Hour5").innerText =
         document.getElementById("Hour4").innerText;
@@ -220,13 +328,12 @@ function updateNextFiveHours(city) {
  * @param {int} hourAdd
  */
 function updateTime(timeUpdate, city, hourAdd) {
-  const time = fetchTime(city);
+  const time = city.fetchTime(city.getTimeZone());
   let hour = new Date(time).getHours();
   const ampm = hour < 12 ? "AM" : "PM";
   hour = hour + hourAdd;
   hour = hour % 12;
   hour = hour === 0 ? 12 : hour;
-  hour = hour < 10 ? "0" + hour : hour;
   timeUpdate.innerText = hour + ampm;
 }
 
@@ -266,33 +373,11 @@ function updateTempImg(img, temp, val) {
 }
 
 /**
- *shows err message if the given city is not available.
- */
-function errFunction() {
-  myStopFunction();
-  let errMessage = document.getElementById("err-message");
-  let citychange = document.getElementById("citychange");
-  let errImgArray = document.getElementsByClassName("err-img");
-  let errTextArray = document.getElementsByClassName("err-text");
-  citychange.setAttribute("style", "border-color: red");
-  errMessage.innerText = "***Invalid City***";
-  errMessage.setAttribute("style", "color: red");
-  for (let i = 0; i < errTextArray.length; i++) {
-    errTextArray[i].innerText = "NaN";
-  }
-  for (let i = 0; i < errImgArray.length; i++) {
-    errImgArray[i].setAttribute(
-      "style",
-      "background-image: url('./HTML & CSS/General Images & Icons/warning.svg')"
-    );
-  }
-}
-
-/**
  *Sort the mid mection based on weather .
  * @param {*} filterId
  */
 function borderChange(filterId) {
+  midSectionObj = new midSection();
   for (let index = 0; index < 3; index++) {
     document
       .getElementById("filter" + index)
@@ -301,9 +386,12 @@ function borderChange(filterId) {
   document
     .getElementById(filterId)
     .setAttribute("style", "border-bottom-style: solid");
-  displayListUpdate(
-    parseInt(filterId.substring(filterId.length - 1, filterId.length))
-  );
+  displayListUpdate(filterId.substring(filterId.length - 1, filterId.length));
+  cardUpdate();
+  clearInterval(timer);
+  timer = setInterval(UpdateCardDateTime, 500);
+}
+function numberBoxUpdate(){
   cardUpdate();
   clearInterval(timer);
   timer = setInterval(UpdateCardDateTime, 500);
@@ -314,10 +402,13 @@ function borderChange(filterId) {
  */
 function cardUpdate() {
   let index = 0;
+  let clone;
+  let temperature;
+  let tempImg;
   clearInterval(timer);
   document.getElementById("mid-container").replaceChildren();
   for (let city in displayList) {
-    let clone = cityId.cloneNode(true);
+    clone = cityId.cloneNode(true);
     clone.id = "city" + index;
     document.getElementById("mid-container").appendChild(clone);
     clone.querySelector("#city-name").innerText = displayList[city].cityName;
@@ -339,13 +430,10 @@ function cardUpdate() {
       displayList[city].cityName.toLowerCase(),
       "card-date" + index
     );
-    updateCardTime(
-      displayList[city].cityName.toLowerCase(),
-      "card-time" + index
-    );
-    let temperature = displayList[city].temperature;
+    midSectionObj.updateCardTime(displayList[city].cityName.toLowerCase());
+    temperature = displayList[city].temperature;
     clone.querySelector("#card-temp").innerText = temperature;
-    let tempImg = clone.querySelector("#card-temp-img");
+    tempImg = clone.querySelector("#card-temp-img");
     temperature = temperature.substring(0, temperature.length - 2);
     updateTempImg(tempImg, temperature, 0);
     index++;
@@ -387,6 +475,7 @@ async function midSectionScroll(val) {
  * @param {int} sort
  */
 function displayListUpdate(sort) {
+  sort = parseInt(sort);
   if (sort === 2) {
     displayList = Object.values(dataList).filter(
       (city) => Number(city.temperature.split("°C")[0]) < 20
@@ -419,39 +508,18 @@ function displayListUpdate(sort) {
 /**
  *function calls functions to Updates Live date and time in displayed cards in mid section.
  */
-function UpdateCardDateTime(){
-    let numBoxValue = document.getElementById("number-box").value;
-    let index = 0;
-    for(let city in displayList){
-        try{
-        updateCardDate(displayList[city], "card-date"+index);
-        document.getElementById("card-time"+index).innerText=   updateCardTime(displayList[city], "card-time"+index);
-        }
-        catch{          
-        }
-        if(index>=parseInt(numBoxValue)-1)
-        break;
-        index++;
-    }
-}
-
-/**
- *Updates Live time in displayed cards in mid section.
- * @param {object} city
- * @param {id} timeId
- * @return {*} time
- */
-
-function updateCardTime(city){
-    let dateTime = fetchTime(city);
-    let hour = (new Date(dateTime).getHours());
-    let min = new Date(dateTime).getMinutes();
-    const ampm = (hour<12) ? "AM" : "PM";
-    hour = hour % 12;
-    hour = hour==0 ? 12 : hour;
-    hour = hour<10 ? "0"+hour : hour; 
-    min = min<10 ? "0"+min : min; 
-    return hour+":"+min+" "+ampm;
+function UpdateCardDateTime() {
+  let numBoxValue = document.getElementById("number-box").value;
+  let index = 0;
+  for (let city in displayList) {
+    try {
+      updateCardDate(displayList[city], "card-date" + index);
+      document.getElementById("card-time" + index).innerText =
+        midSectionObj.updateCardTime(displayList[city], "card-time" + index);
+    } catch {}
+    if (index >= parseInt(numBoxValue) - 1) break;
+    index++;
+  }
 }
 
 /**
@@ -460,7 +528,7 @@ function updateCardTime(city){
  * @param {id} dateId
  */
 function updateCardDate(city, dateId) {
-  let dateTime = fetchTime(city);
+  let dateTime = midSectionObj.fetchTime(city.timeZone);
   const date = new Date(dateTime).getDate();
   document.getElementById(dateId).innerText =
     (date < 10 ? "0" + date : date) +
@@ -477,125 +545,171 @@ function updateCardDate(city, dateId) {
 /**
  *Updates Visibility of scroll arrows and alignment of cards in mid section.
  */
-function updateScrollArrow(){
-    let divWidth = document.getElementById("card-div").clientWidth;
-    let displayCount = displayList.length;
-    let numberBoxCount = document.getElementById("number-box").value;
-    let count = displayCount<numberBoxCount? displayCount:numberBoxCount;
-    if(divWidth < count*280){
-        document.getElementById("mid-container").setAttribute("style","justify-content: none");
-        document.getElementById("arrow-div1").setAttribute("style","display:flex");
-        document.getElementById("arrow-div2").setAttribute("style","display:flex");
-    }
-    else{
-        document.getElementById("mid-container").setAttribute("style","justify-content: center");
-        document.getElementById("arrow-div1").setAttribute("style","display:none");
-        document.getElementById("arrow-div2").setAttribute("style","display:none");
-    }
+function updateScrollArrow() {
+  let divWidth = document.getElementById("card-div").clientWidth;
+  let displayCount = displayList.length;
+  let numberBoxCount = document.getElementById("number-box").value;
+  let count = displayCount < numberBoxCount ? displayCount : numberBoxCount;
+  if (divWidth < count * 280) {
+    document
+      .getElementById("mid-container")
+      .setAttribute("style", "justify-content: none");
+    document.getElementById("arrow-div1").setAttribute("style", "display:flex");
+    document.getElementById("arrow-div2").setAttribute("style", "display:flex");
+  } else {
+    document
+      .getElementById("mid-container")
+      .setAttribute("style", "justify-content: center");
+    document.getElementById("arrow-div1").setAttribute("style", "display:none");
+    document.getElementById("arrow-div2").setAttribute("style", "display:none");
+  }
 }
 
 /**
  *Update bottom section by creating blocks based on the city list.
  */
-function updateBlocks(){
-    let index = 0;
-    clearInterval(blockTimer);
-    document.getElementById("blocks").replaceChildren();
-    for(let city in blockList){
-        let clone = blockId.cloneNode(true);
-        clone.id='block'+index;
-        document.getElementById("blocks").appendChild(clone);
-        let timeZone = blockList[city].timeZone;
-        clone.querySelector("#city-time").id="city-time"+index;
-        clone.querySelector("#continent-name").innerText=timeZone.substring(0,timeZone.indexOf('/'));
-        clone.querySelector("#block-temp").innerText=blockList[city].temperature;
-        clone.querySelector("#block-humidity").innerText=blockList[city].humidity;
-        document.getElementById("city-time"+index).innerText=blockList[city].cityName+", "+updateCardTime(blockList[city]);
-        if(index==11)
-            break;
-        index++;
-    }
+function updateBlocks() {
+  let index = 0;
+  let clone;
+  let timeZone;
+  footSectionObj = new footSection();
+  clearInterval(blockTimer);
+  document.getElementById("blocks").replaceChildren();
+  for (let city in blockList) {
+    clone = blockId.cloneNode(true);
+    clone.id = "block" + index;
+    document.getElementById("blocks").appendChild(clone);
+    timeZone = blockList[city].timeZone;
+    clone.querySelector("#city-time").id = "city-time" + index;
+    clone.querySelector("#continent-name").innerText = timeZone.substring(
+      0,
+      timeZone.indexOf("/")
+    );
+    clone.querySelector("#block-temp").innerText = blockList[city].temperature;
+    clone.querySelector("#block-humidity").innerText = blockList[city].humidity;
+    document.getElementById("city-time" + index).innerText =
+      blockList[city].cityName +
+      ", " +
+      footSectionObj.updateCardTime(blockList[city]);
+    if (index === 11) break;
+    index++;
+  }
 }
 
 /**
  *Update block time for every minute.
  */
- function UpdateBlockTime(){
-    let index = 0;
-    for(let city in blockList){
-        document.getElementById("city-time"+index).innerText=blockList[city].cityName+", "+updateCardTime(blockList[city]);
-        if(index==11)
-            break;
-        index++;
-    }
+function UpdateBlockTime() {
+  let index = 0;
+  for (let city in blockList) {
+    document.getElementById("city-time" + index).innerText =
+      blockList[city].cityName +
+      ", " +
+      footSectionObj.updateCardTime(blockList[city]);
+    if (index === 11) break;
+    index++;
+  }
 }
 
 /**
  *Update bottom section blocks based on continent and temperature filters.
  * @param {int} val
  */
- function UpdateBlockSort(val){
-    UpdateBlockSortTemperature();
+function UpdateBlockSort(val) {
+  UpdateBlockSortTemperature();
+  UpdateBlockSortContinent();
+  if (val === 1) {
+    if (temperatureSwap === 0) {
+      document
+        .getElementById("Temperature-sort")
+        .setAttribute(
+          "style",
+          "background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')"
+        );
+      temperatureSwap = 1;
+    } else {
+      document
+        .getElementById("Temperature-sort")
+        .setAttribute(
+          "style",
+          "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
+        );
+      temperatureSwap = 0;
+    }
+  } else if (val === 2) {
+    if (continentSwap === 0) {
+      document
+        .getElementById("Continent-sort")
+        .setAttribute(
+          "style",
+          "background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')"
+        );
+      continentSwap = 1;
+    } else {
+      document
+        .getElementById("Continent-sort")
+        .setAttribute(
+          "style",
+          "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
+        );
+      continentSwap = 0;
+    }
+  }
+  if (continentSwap === 1) {
+    if (temperatureSwap === 0) {
+      UpdateBlockSortTemperature();
+      blockList.reverse();
+    }
     UpdateBlockSortContinent();
-    if(val==1){
-        if(temperatureSwap==0){
-            document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')");
-            temperatureSwap=1;
-        }
-        else{
-            document.getElementById("Temperature-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
-            temperatureSwap=0;
-        }
-    }
-    else if(val==2){
-        if(continentSwap==0){
-            document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')");
-            continentSwap=1;
-        }
-        else{
-            document.getElementById("Continent-sort").setAttribute("style","background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')");
-            continentSwap=0;
-        }
-    }
-    if(continentSwap==1){
-        if(temperatureSwap==0){
-        UpdateBlockSortTemperature();
-        blockList.reverse();
-        }
-        UpdateBlockSortContinent();
-        blockList.reverse();
-    }
-    else if(temperatureSwap==1 && continentSwap==0){
-        blockList.reverse();
-        UpdateBlockSortContinent();
-    }
-    updateBlocks();
-    blockTimer = setInterval(UpdateBlockTime, 500);
+    blockList.reverse();
+  } else if (temperatureSwap === 1 && continentSwap === 0) {
+    blockList.reverse();
+    UpdateBlockSortContinent();
+  }
+  updateBlocks();
+  blockTimer = setInterval(UpdateBlockTime, 500);
 }
 
 /**
  *Sort the block list based on continents
  */
-function UpdateBlockSortContinent(){
-    blockList.sort(
-        function (a, b) {
-            if (a.timeZone.split("/")[0] < b.timeZone.split("/")[0]) {
-              return -1;
-            }
-            if (a.timeZone.split("/")[0] > b.timeZone.split("/")[0]) {
-              return 1;
-            }
-            return 0;
-    });
-    updateBlocks();
+function UpdateBlockSortContinent() {
+  blockList.sort(function (a, b) {
+    if (a.timeZone.split("/")[0] < b.timeZone.split("/")[0]) {
+      return -1;
+    }
+    if (a.timeZone.split("/")[0] > b.timeZone.split("/")[0]) {
+      return 1;
+    }
+    return 0;
+  });
+  updateBlocks();
 }
 
 /**
  *Sort the block list based on Temperature.
  */
-function UpdateBlockSortTemperature(){
-    blockList.sort(
-        (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
-    );
-    updateBlocks();
+function UpdateBlockSortTemperature() {
+  blockList.sort(
+    (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
+  );
+  updateBlocks();
 }
+(function () {
+  let option;
+  dataList = cityData;
+  displayList = cityData;
+  blockList = Object.values(dataList);
+  let city = document.getElementById("city");
+  for (let cityDetails in dataList) {
+    option = document.createElement("OPTION");
+    option.value = dataList[cityDetails].cityName;
+    city.appendChild(option);
+  }
+  updateTopSection(document.getElementById("citychange").value);
+  borderChange("filter0");
+  updateBlocks();
+  UpdateBlockSort(0);
+  clearInterval(blockTimer);
+  blockTimer = setInterval(UpdateBlockTime, 500);
+})();
