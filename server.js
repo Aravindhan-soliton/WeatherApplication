@@ -1,11 +1,6 @@
 const fs = require("fs");
 const http = require("http");
 const path = require("path");
-const {
-  allTimeZones,
-  timeForOneCity,
-  nextNhoursWeather,
-} = require("./timeZone.js");
 
 let lastForeCast;
 var express = require("express");
