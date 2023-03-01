@@ -5,6 +5,7 @@ let cityTimeData;
  */
 const getTotalCityDetails = async () => {
   await fetch("http://127.0.0.1:8000/all-timezone-cities")
+  await fetch("http://127.0.0.1:8000/all-timezone-cities")
     .then((response) => {
       return response.json();
     })
@@ -27,6 +28,7 @@ var requestOptions1 = {
  * @param {string} city
  */
 const getNextFiveHoursCity = async (city) => {
+  await fetch("http://127.0.0.1:8000?city=" + city, requestOptions1)
   await fetch("http://127.0.0.1:8000?city=" + city, requestOptions1)
     .then((response) => response.json())
     .then((result) => {
@@ -58,6 +60,7 @@ const getNextFiveHours = async (city) => {
     body: raw,
     redirect: "follow",
   };
+  await fetch("http://127.0.0.1:8000/hourly-forecast", requestOptions2)
   await fetch("http://127.0.0.1:8000/hourly-forecast", requestOptions2)
     .then((response) => response.json())
     .then((result) => {
