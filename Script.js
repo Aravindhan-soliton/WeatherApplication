@@ -43,13 +43,13 @@ document
   .getElementById("Temperature-sort")
   .setAttribute(
     "style",
-    "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
+    "background-image: url('assets/arrowUp.svg')"
   );
 document
   .getElementById("Continent-sort")
   .setAttribute(
     "style",
-    "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
+    "background-image: url('assets/arrowUp.svg')"
   );
 /**
  *prototype function for top section.
@@ -62,7 +62,6 @@ class cityFunction {
     this.temperature = city.temperature;
     this.humidity = city.humidity;
     this.precipitation = city.precipitation;
-    // this.nextFiveHrs = city.nextFiveHrs;
   }
   // Get values operation performed for all the needed fieldscity
   getCityName() {
@@ -144,7 +143,7 @@ function errFunction() {
   for (let i = 0; i < errImgArray.length; i++) {
     errImgArray[i].setAttribute(
       "style",
-      "background-image: url('./HTML & CSS/General Images & Icons/warning.svg')"
+      "background-image: url('./assets/warning.svg')"
     );
   }
 }
@@ -152,8 +151,7 @@ function errFunction() {
 /**
  *Update the City details in top section.
  */
-async function UpdateCity()  {
-  await getNextFiveHours(this.value);
+function UpdateCity()  {
   updateTopSection(this.value);
 }
 
@@ -162,7 +160,7 @@ async function UpdateCity()  {
  *else call error function to show error message.es
  * @param {string} city
  */
-function updateTopSection(city) {
+ async function updateTopSection(city) {
   let temp = false;
   let cityIndex;
   for (let cit in dataList) {
@@ -173,6 +171,7 @@ function updateTopSection(city) {
     }
   }
   if (temp) {
+    await getNextFiveHours(city);
     cityObj = new cityFunction(dataList[cityIndex]);
     var citychange = document.getElementById("citychange");
     var errMessage = document.getElementById("err-message");
@@ -196,7 +195,7 @@ function updateCityImg(city) {
     .getElementById("city-logo")
     .setAttribute(
       "style",
-      "background-image: url('./HTML & CSS/Icons for cities/" +
+      "background-image: url('./assets/" +
         city.getCityName().toLowerCase() +
         ".svg')"
     );
@@ -233,14 +232,14 @@ function updateCityTime(city) {
         .getElementById("ampm")
         .setAttribute(
           "style",
-          "background-image: url('./HTML & CSS/General Images & Icons/amState.svg')"
+          "background-image: url('./assets/amState.svg')"
         );
     } else {
       document
         .getElementById("ampm")
         .setAttribute(
           "style",
-          "background-image: url('./HTML & CSS/General Images & Icons/pmState.svg')"
+          "background-image: url('./assets/pmState.svg')"
         );
     }
     hour %= 12;
@@ -334,27 +333,27 @@ function updateTempImg(img, temp, val) {
   if (temp < 19) {
     img.setAttribute(
       "style",
-      "background-image: url('./HTML & CSS/Weather Icons/rainyIcon.svg')"
+      "background-image: url('./assets/rainyIcon.svg')"
     );
   } else if (temp < 22 && val === 1) {
     img.setAttribute(
       "style",
-      "background-image: url('./HTML & CSS/Weather Icons/windyIcon.svg')"
+      "background-image: url('./assets/windyIcon.svg')"
     );
   } else if (temp < 29 && val === 1) {
     img.setAttribute(
       "style",
-      "background-image: url('./HTML & CSS/Weather Icons/cloudyIcon.svg')"
+      "background-image: url('./assets/cloudyIcon.svg')"
     );
   } else if (temp < 28) {
     img.setAttribute(
       "style",
-      "background-image: url('./HTML & CSS/Weather Icons/snowflakeIcon.svg')"
+      "background-image: url('./assets/snowflakeIcon.svg')"
     );
   } else {
     img.setAttribute(
       "style",
-      "background-image: url('./HTML & CSS/Weather Icons/sunnyIcon.svg')"
+      "background-image: url('./assets/sunnyIcon.svg')"
     );
   }
 }
@@ -400,7 +399,7 @@ function cardUpdate() {
       .querySelector("#card-img")
       .setAttribute(
         "style",
-        "background-image: url('./HTML & CSS/Icons for cities/" +
+        "background-image: url('./assets/" +
           midSectionObj.getCityName().toLowerCase() +
           ".svg')"
       );
@@ -603,7 +602,7 @@ function UpdateBlockSort(val) {
         .getElementById("Temperature-sort")
         .setAttribute(
           "style",
-          "background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')"
+          "background-image: url('assets/arrowDown.svg')"
         );
       temperatureSwap = 1;
     } else {
@@ -611,7 +610,7 @@ function UpdateBlockSort(val) {
         .getElementById("Temperature-sort")
         .setAttribute(
           "style",
-          "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
+          "background-image: url('assets/arrowUp.svg')"
         );
       temperatureSwap = 0;
     }
@@ -621,7 +620,7 @@ function UpdateBlockSort(val) {
         .getElementById("Continent-sort")
         .setAttribute(
           "style",
-          "background-image: url('HTML & CSS/General Images & Icons/arrowDown.svg')"
+          "background-image: url('assets/arrowDown.svg')"
         );
       continentSwap = 1;
     } else {
@@ -629,7 +628,7 @@ function UpdateBlockSort(val) {
         .getElementById("Continent-sort")
         .setAttribute(
           "style",
-          "background-image: url('HTML & CSS/General Images & Icons/arrowUp.svg')"
+          "background-image: url('assets/arrowUp.svg')"
         );
       continentSwap = 0;
     }
@@ -680,7 +679,6 @@ function UpdateBlockSortTemperature() {
  */
 const asyncAwait = async () => {
   await getTotalCityDetails();
-  await getNextFiveHours("London");
   dataList = totalDetails;
   displayList = totalDetails;
   blockList = totalDetails;
