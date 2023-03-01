@@ -2,6 +2,7 @@ let cityObj;
 let midSectionObj;
 let footSectionObj;
 let myInterval;
+let weatherListInterval;
 let dataList;
 let displayList;
 let blockList;
@@ -44,11 +45,13 @@ document
   .setAttribute(
     "style",
     "background-image: url('assets/arrowUp.svg')"
+    "background-image: url('assets/arrowUp.svg')"
   );
 document
   .getElementById("Continent-sort")
   .setAttribute(
     "style",
+    "background-image: url('assets/arrowUp.svg')"
     "background-image: url('assets/arrowUp.svg')"
   );
 /**
@@ -144,6 +147,7 @@ function errFunction() {
     errImgArray[i].setAttribute(
       "style",
       "background-image: url('./assets/warning.svg')"
+      "background-image: url('./assets/warning.svg')"
     );
   }
 }
@@ -151,6 +155,7 @@ function errFunction() {
 /**
  *Update the City details in top section.
  */
+function UpdateCity()  {
 function UpdateCity()  {
   updateTopSection(this.value);
 }
@@ -161,18 +166,19 @@ function UpdateCity()  {
  * @param {string} city
  */
  async function updateTopSection(city) {
+ async function updateTopSection(city) {
   let temp = false;
   let cityIndex;
   for (let cit in dataList) {
     if (city.toLowerCase() === dataList[cit].cityName.toLowerCase()) {
         temp = true;
         cityIndex = cit;
+        cityObj = new cityFunction(dataList[cityIndex]);
         break;
     }
   }
   if (temp) {
     await getNextFiveHours(city);
-    cityObj = new cityFunction(dataList[cityIndex]);
     var citychange = document.getElementById("citychange");
     var errMessage = document.getElementById("err-message");
     citychange.setAttribute("style", "border-color: transparent");
@@ -195,6 +201,7 @@ function updateCityImg(city) {
     .getElementById("city-logo")
     .setAttribute(
       "style",
+      "background-image: url('./assets/" +
       "background-image: url('./assets/" +
         city.getCityName().toLowerCase() +
         ".svg')"
@@ -233,12 +240,14 @@ function updateCityTime(city) {
         .setAttribute(
           "style",
           "background-image: url('./assets/amState.svg')"
+          "background-image: url('./assets/amState.svg')"
         );
     } else {
       document
         .getElementById("ampm")
         .setAttribute(
           "style",
+          "background-image: url('./assets/pmState.svg')"
           "background-image: url('./assets/pmState.svg')"
         );
     }
@@ -334,25 +343,30 @@ function updateTempImg(img, temp, val) {
     img.setAttribute(
       "style",
       "background-image: url('./assets/rainyIcon.svg')"
+      "background-image: url('./assets/rainyIcon.svg')"
     );
   } else if (temp < 22 && val === 1) {
     img.setAttribute(
       "style",
+      "background-image: url('./assets/windyIcon.svg')"
       "background-image: url('./assets/windyIcon.svg')"
     );
   } else if (temp < 29 && val === 1) {
     img.setAttribute(
       "style",
       "background-image: url('./assets/cloudyIcon.svg')"
+      "background-image: url('./assets/cloudyIcon.svg')"
     );
   } else if (temp < 28) {
     img.setAttribute(
       "style",
       "background-image: url('./assets/snowflakeIcon.svg')"
+      "background-image: url('./assets/snowflakeIcon.svg')"
     );
   } else {
     img.setAttribute(
       "style",
+      "background-image: url('./assets/sunnyIcon.svg')"
       "background-image: url('./assets/sunnyIcon.svg')"
     );
   }
@@ -399,6 +413,7 @@ function cardUpdate() {
       .querySelector("#card-img")
       .setAttribute(
         "style",
+        "background-image: url('./assets/" +
         "background-image: url('./assets/" +
           midSectionObj.getCityName().toLowerCase() +
           ".svg')"
@@ -603,6 +618,7 @@ function UpdateBlockSort(val) {
         .setAttribute(
           "style",
           "background-image: url('assets/arrowDown.svg')"
+          "background-image: url('assets/arrowDown.svg')"
         );
       temperatureSwap = 1;
     } else {
@@ -610,6 +626,7 @@ function UpdateBlockSort(val) {
         .getElementById("Temperature-sort")
         .setAttribute(
           "style",
+          "background-image: url('assets/arrowUp.svg')"
           "background-image: url('assets/arrowUp.svg')"
         );
       temperatureSwap = 0;
@@ -621,6 +638,7 @@ function UpdateBlockSort(val) {
         .setAttribute(
           "style",
           "background-image: url('assets/arrowDown.svg')"
+          "background-image: url('assets/arrowDown.svg')"
         );
       continentSwap = 1;
     } else {
@@ -628,6 +646,7 @@ function UpdateBlockSort(val) {
         .getElementById("Continent-sort")
         .setAttribute(
           "style",
+          "background-image: url('assets/arrowUp.svg')"
           "background-image: url('assets/arrowUp.svg')"
         );
       continentSwap = 0;
@@ -670,7 +689,7 @@ function UpdateBlockSortContinent() {
 function UpdateBlockSortTemperature() {
   blockList.sort(
     (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
-  );totalDetails
+  );
   updateBlocks();
 }
 
@@ -683,6 +702,7 @@ const asyncAwait = async () => {
   displayList = totalDetails;
   blockList = totalDetails;
   console.log(dataList);
+  city.innerHTML="";
   for (let cityDetails in dataList) {
     let option = document.createElement("OPTION");
     option.value = dataList[cityDetails].cityName;
@@ -697,5 +717,7 @@ const asyncAwait = async () => {
 };
 
 (function () {
-    asyncAwait();
+  asyncAwait();
+  clearInterval(weatherListInterval);
+  weatherListInterval = setInterval(asyncAwait, 3600000);
 })();
