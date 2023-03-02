@@ -3,6 +3,7 @@ let midSectionObj;
 let footSectionObj;
 let myInterval;
 let weatherListInterval;
+let weatherListInterval;
 let dataList;
 let displayList;
 let blockList;
@@ -163,10 +164,12 @@ async function updateTopSection(city) {
         temp = true;
         cityIndex = cit;
         cityObj = new cityFunction(dataList[cityIndex]);
+        cityObj = new cityFunction(dataList[cityIndex]);
         break;
     }
   }
   if (temp) {
+    await getNextFiveHours(city);
     await getNextFiveHours(city);
     var citychange = document.getElementById("citychange");
     var errMessage = document.getElementById("err-message");
@@ -649,6 +652,7 @@ function UpdateBlockSortTemperature() {
   blockList.sort(
     (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
   );
+  );
   updateBlocks();
 }
 
@@ -676,6 +680,9 @@ const asyncAwait = async () => {
 };
 
 (function () {
+  asyncAwait();
+  clearInterval(weatherListInterval);
+  weatherListInterval = setInterval(asyncAwait, 3600000);
   asyncAwait();
   clearInterval(weatherListInterval);
   weatherListInterval = setInterval(asyncAwait, 3600000);
