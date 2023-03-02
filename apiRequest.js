@@ -5,7 +5,6 @@ let cityTimeData;
  */
 const getTotalCityDetails = async () => {
   await fetch("http://127.0.0.1:8000/all-timezone-cities")
-  await fetch("http://127.0.0.1:8000/all-timezone-cities")
     .then((response) => {
       return response.json();
     })
@@ -13,7 +12,7 @@ const getTotalCityDetails = async () => {
       totalDetails = responseData;
     })
     .catch((error) => {
-      if(confirm("Error while fetching data, click ok to reload the page...1 ", error) == true)
+      if(confirm("Error while fetching data, click ok to reload the page...1 ", error) === true)
        location.reload();
     });
 };
@@ -29,13 +28,12 @@ var requestOptions1 = {
  */
 const getNextFiveHoursCity = async (city) => {
   await fetch("http://127.0.0.1:8000?city=" + city, requestOptions1)
-  await fetch("http://127.0.0.1:8000?city=" + city, requestOptions1)
     .then((response) => response.json())
     .then((result) => {
       cityTimeData = result;
     })
     .catch((error) => {
-      if(confirm("Error while fetching data, click ok to reload the page...2 ", error) == true)
+      if(confirm("Error while fetching data, click ok to reload the page...2 ", error) === true)
       location.reload();
     });
 };
@@ -60,7 +58,6 @@ const getNextFiveHours = async (city) => {
     body: raw,
     redirect: "follow",
   };
-  await fetch("http://127.0.0.1:8000/hourly-forecast", requestOptions2)
   await fetch("http://127.0.0.1:8000/hourly-forecast", requestOptions2)
     .then((response) => response.json())
     .then((result) => {

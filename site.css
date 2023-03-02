@@ -1,6 +1,5 @@
 .am {
 	background-image: url("assets/amState.svg");
-	background-image: url("assets/amState.svg");
 	background-repeat: no-repeat;
 	background-size: 80px;
 	height: 77px;
@@ -33,7 +32,6 @@
 }
 .bg {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/background.svg");
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/background.svg");
 	background-size: cover;
 }
 .block {
@@ -51,7 +49,6 @@
     box-shadow: 10px 10px 5px 	black;
 }
 .block-humidity {
-	background-image: url("assets/humidityIcon.svg");
 	background-image: url("assets/humidityIcon.svg");
 	background-position-x: right;
 	background-position-y: center;
@@ -118,7 +115,6 @@
 }
 .card-img {
 	background: url("assets/dublin.svg");
-	background: url("assets/dublin.svg");
 	background-position-x: right;
 	background-position-y: 90px;
 	background-repeat: no-repeat;
@@ -142,7 +138,6 @@
 
 }
 .card-temp-img {
-	background-image: url("assets/sunnyIcon.svg");
 	background-image: url("assets/sunnyIcon.svg");
 	background-position-x: left;
 	background-position-y: bottom;
@@ -191,7 +186,6 @@
 }
 .cloud {
 	background-image: url("assets/precipitationIcon.svg");
-	background-image: url("assets/precipitationIcon.svg");
 	background-position-x: left;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -208,7 +202,6 @@
 	font-weight: 400;
 }
 .cool-img {
-	background-image: url("assets/snowflakeIcon.svg");
 	background-image: url("assets/snowflakeIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
@@ -370,7 +363,6 @@
 }
 .humidity {
 	background-image: url("assets/humidityIcon.svg");
-	background-image: url("assets/humidityIcon.svg");
 	background-position-x: left;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -418,7 +410,6 @@
     cursor: pointer;
 }
 .rain-img {
-	background-image: url("assets/rainyIcon.svg");
 	background-image: url("assets/rainyIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
@@ -475,7 +466,6 @@
 }
 .sun-img {
 	background-image: url("assets/sunnyIcon.svg");
-	background-image: url("assets/sunnyIcon.svg");
 	background-position-x: center;
 	background-position-y: center;
 	background-repeat: no-repeat;
@@ -519,7 +509,6 @@
 	background-repeat: no-repeat;
 	background-size: 70%;
 	height: 60px;
-    background-image: url("assets/rainyIcon.svg");
     background-image: url("assets/rainyIcon.svg");
 }
 .width100 {
