@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet"  type="text/css" href="site.css">
+    <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+    <!-- Head Section -->
+    <div class="bg head">
+        <div class="sub">
+            <!-- City Logo -->
+            <div class="city-logo-div">
+                <div class="city-logo err-img" id="city-logo">
+                </div>
+            </div>
+            <!-- City Selection and Date Time -->
+            <div class="time bottom">
+                <!-- City Seclection -->
+                <div class="city-height bottom">
+                    <div class="err-message">
+                    <p  id="err-message"></p>
+                    </div>
+                    <input id="citychange"  list="city" value="London" class="dropdown" />
+                <datalist id="city"></datalist> 
+                </div>
+                <!-- Date Time -->
+                <div class="date-height bottom">
+                    <div class="flex row">
+                        <p class="digi-time err-text" id="time">10:10:</p>
+                        <p class="digi-time seconds err-text" id="sec">10</p>
+                        <div class="am err-img" id="ampm"></div>
+                    </div>
+                    <p class="date err-text" id="date">30-Jul-2020</p>
+                </div>
+            </div>
+            <!-- Weather Details -->
+            <div class="temp-full">
+                <div class="flex">
+                    <div class="half-height bottom ">
+                        <p class="title-font">
+                            Temp &deg;C
+                        </p>
+                        <p class="value-font bold err-text" id="tempC">
+                            C
+                        </p>
+                    </div>
+                    <div class="down-height bottom">
+                        <p class="title-font">
+                            Temp F
+                        </p>
+                        <p class="value-font bold err-text" id="tempF">
+                            F
+                        </p>
+                    </div>
+                </div>
+                <div class="flex1">
+                    <div class="line-temp-full">
+                    <div class="  border">
+                    </div>
+                </div>
+                <div class="line-temp-full">
+                    <div class=" border">
+                    </div>
+                </div>
+                </div>
+                <div class="flex">
+                    <div class="half-height bottom  ">
+                        <p class="title-font">
+                            Humidity
+                        </p>
+                        <p class="value-font  lighter">
+                            <span class="bold err-text " id="humidity"></span>%
+                        </p>
+                    </div>
+                    <div class="down-height bottom ">
+                        <p class="title-font">
+                            Precipition
+                        </p>
+                        <p class="value-font lighter ">
+                            <span class="bold err-text" id="precipitation"></span>%
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Next five hours  -->
+            <div class=" flex hour-values">
+                <div class="flex row space ">
+                    <div>
+                        <div class="center err-text" id="now">
+                            NOW
+                        </div>
+                        <div class="center ">
+                            |
+                        </div>
+                        <div class="center weather space err-img" id="Img0">
+                        </div>
+                        <div class="center err-text" id="Hour0">
+                            6
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center err-text" id="Time1">
+                            11AM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather space err-img" id="Img1">
+                        </div>
+                        <div class="center err-text" id="Hour1">
+                            7
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center err-text" id="Time2">
+                            12PM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather space err-img" id="Img2">
+                        </div>
+                        <div class="center err-text" id="Hour2">
+                            7
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center err-text" id="Time3">
+                            1PM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather space err-img" id="Img3">
+                        </div>
+                        <div class="center err-text" id="Hour3">
+                            8
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center err-text" id="Time4">
+                            2PM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather space err-img" id="Img4">
+                        </div>
+                        <div class="center err-text" id="Hour4">
+                            8
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div>
+                            |
+                        </div>
+                    </div>
+                    <div>
+                        <div class="center err-text" id="Time5">
+                            3PM
+                        </div>
+                        <div class="center">
+                            |
+                        </div>
+                        <div class="center weather err-img" id="Img5">
+                        </div>
+                        <div class="center err-text" id="Hour5">
+                            6
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mid Section -->
+    <div class="mid">
+        <div class="sub-mid flex row">
+            <div class="arrow-div" >
+                <div class="arrow-center" id="arrow-div1">
+                    <div class="arrow"  id="left-button">
+                        <p class="gt">&lt;</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Mid Heading -->
+            <div class="width85" id="card-div">
+            <div class="flex row">
+                <div class="centered mid-head">
+                    Top cities around world
+                </div>
+                    <div class="flex row space width30">
+                        <div class="sun-img " id="filter0">
+                        </div>
+                        <div class="cool-img" id="filter1">  
+                        </div>
+                        <div class="rain-img " id="filter2">
+                        </div>
+                        <div class="display-top ">
+                            Display Top
+                        </div>
+                        <div class="center">
+                            <input class="number-box " max="10" min="3" id="number-box" value="3" type="number" />
+                        </div>
+                </div>
+            </div>
+            <!-- Cards -->
+            <div class="flex row" id="cards">
+                <div class="flex row cards scroll" id="mid-container">
+                    <div class="card" id="city0">
+                        <div class="card-img" id="card-img" >
+                            <div class="flex row">
+                                <div class="card-data">
+                                    <p class="city-name" id="city-name">New Delhi</p><br>
+                                    <p class="time-date" id="card-time">10:00 AM</p><br>
+                                    <p class="time-date" id="card-date">2-Mar-2020</p><br>
+                                    <div class="flex row">
+                                        <div class="humidity"></div>
+                                        <p class="card-value" id="card-humidity">53%</p>
+                                    </div>
+                                    <div class="flex row">
+                                        <div class="cloud"></div>
+                                        <p class="card-value" id="card-precipitation">10%</p>
+                                    </div>
+                                </div>
+                                <div class="card-temp card-data">
+                                    <div class="card-temp-img" id="card-temp-img"></div>
+                                    <div class="card-temp-value" id="card-temp"> 25 &deg;C</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            </div>
+            <div class="arrow-div" id="right-button">
+                <div class="arrow-center" id="arrow-div2">
+                    <div class="arrow">
+                        <p class="gt">&gt;</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Foot Section -->
+    <div class="flex foot">
+        <div class="foot-full">
+            <!-- Foot Heading -->
+            <div class="flex foot-center">
+            <div class="flex row space foot-head-bar">
+                <div class="foot-head">
+                Cities across continents at a Glance
+            </div>
+            <div class="flex row flex-end foot-right-width ">
+                <div class="foot-head-bar-right">
+                    Continent Name
+                </div>
+                <div class="sort-arrow" name="up" id="Continent-sort" >
+                </div>
+                <div class="foot-head-bar-right">
+                    Temperature
+                </div>
+                <div class="sort-arrow" name="up" id="Temperature-sort">
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- BLocks -->
+            <div class="scheduler-grid" id="blocks">
+                <div class="block" id="block0">
+                    <div class="flex block-left">
+                        <div class="continent-name" id="continent-name">
+                            Asia
+                        </div>
+                        <div class="font20" >
+                            <p id="city-name">Delhi</p> <p id="city-time">10:10 AM</p>
+                        </div>
+                    </div>
+                    <div class="block-right column">
+                        <div class="block-temp" id="block-temp">
+                        38 &deg;C
+                    </div>
+                    <div class="block-temp-value">
+                        <div class="block-humidity"></div>
+                        <div class="block-humidity-value" id="block-humidity">53%</div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="apiRequest.js" ></script>
+<script src="Script.js" ></script>
+</html>
