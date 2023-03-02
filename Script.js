@@ -3,7 +3,6 @@ let midSectionObj;
 let footSectionObj;
 let myInterval;
 let weatherListInterval;
-let weatherListInterval;
 let dataList;
 let displayList;
 let blockList;
@@ -651,7 +650,6 @@ function UpdateBlockSortContinent() {
 function UpdateBlockSortTemperature() {
   blockList.sort(
     (a, b) => a.temperature.split("°C")[0] - b.temperature.split("°C")[0]
-  );
   );
   updateBlocks();
 }
